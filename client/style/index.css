@@ -1,0 +1,131 @@
+/* --------------------------- Generals settings -------------------------- */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary: orangered;
+    --secondary: rgb(60, 60, 255);
+}
+body
+{
+    background-color: #f8f8f8;
+}
+
+/* --------------------------------- Header ----------------------------------- */
+
+header
+{
+    color: white;
+    height: 100vh;
+    background-image: url("../img/cover.jpg");
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.77);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#buttons
+{
+    margin: 15px 0px;
+    text-align: center;
+}
+/* #buttons a
+{
+    padding: 50px;
+    background-color: red;
+} */
+#buttons button
+{
+    color: black;
+    width: 130px;
+    padding: 15px 20px;
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 200ms ease-in;
+}
+#buttons button:hover
+{
+    color: white;
+    background: transparent;
+}
+/* For phones */
+@media screen and (max-width: 520px) {
+    header
+    {
+        text-align: center;
+    }
+    #buttons
+    {
+        margin: 25px 0px;
+        text-align: center;
+    }
+    
+}
+/* -------------------------------------- Main ------------ ------------------------------ */
+main
+{
+    padding: 40px 0px;
+    text-align: center;
+}
+main h2
+{
+    padding: 25px 0px;
+}
+#divider
+{
+    width: 5%;
+    margin: auto;
+    height: 2px;
+    background-color: var(--primary);
+    display: block;
+}
+#advantages
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 60%;
+    margin: auto;
+    padding: 20px 0px;
+}
+.part
+{
+    width: 50%;
+    margin: auto;
+}
+.part img 
+{
+    width: 50px;
+    margin: 15px 0px;
+}
+@media screen and (max-width: 520px) {
+    #advantages
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 80%;
+    }
+    .part
+    {
+        width: 90%;
+        margin: auto;
+    }
+    #divider
+    {
+        width: 20%;
+    }
+}
+/* -------------------------------------- Footer ------------ ------------------------------ */
+
+#bottom
+{
+    background-color: var(--primary);
+    padding: 28px 0px;
+    text-align: center;
+}
