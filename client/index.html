@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="icon" href="./img/brand.png">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Meeting</title>
 </head>
+
 <body>
-    
+
     <div id="app">
 
+        <header>
+            <div id="header-content">
+                <h2> REGOIGNEZ LA COMMUNAUTÉ </h2>
+                <div id="buttons">
+                    <router-link to="/register">
+                        <button>Register</button>
+                    </router-link>
+                    <router-link to="/login">
+                        <button>Login</button>
+                    </router-link>
+
+                    <router-view></router-view>
+                </div>
+            </div>
+        </header>
+
+        <main>
+
+            <h2> AVANTAGES </h2>
+            <span id="divider"></span>
+
+            <div id="advantages">
+                <div class="part" v-for="advantage in advantages">
+                    <img :src="advantage.url">
+                    <h4> {{advantage.title}} </h4>
+                    <p> {{advantage.text}} </p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Un truc à completer  -->
+
+            <div id="bottom">
+                <span> &copy; <a href="https://www.efrei.fr/">EFREI PARIS</a> Students project 2021 </span>
+            </div>
+
+        </footer>
     </div>
+
+    <script src="./js/index.js"></script>
+
 </body>
+
 </html>
