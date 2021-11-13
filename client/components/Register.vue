@@ -49,19 +49,16 @@ module.exports = {
 <style>
 /*===== VARIABLES CSS =====*/
 :root {
-  --body-font: "Roboto", sans-serif;
   --normal-font-size: 1rem;
   --small-font-size: 0.75rem;
 }
 
-/*===== BASE =====*/
 *,
 ::before,
 ::after {
   box-sizing: border-box;
 }
 
-/*===== FORM =====*/
 .l-form {
   display: flex;
   justify-content: center;
@@ -120,7 +117,6 @@ module.exports = {
   box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
 }
 
-/*Input focus move up label*/
 .form__input:focus + .form__label {
   top: -0.5rem;
   left: 0.8rem;
@@ -131,7 +127,6 @@ module.exports = {
   background-color: #F3F3F3;
 }
 
-/*Input focus sticky top label*/
 .form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {
   top: -0.5rem;
   left: 0.8rem;
@@ -140,7 +135,6 @@ module.exports = {
   z-index: 10;
 }
 
-/*Input focus*/
 .form__input:focus {
   border: 1.5px solid var(--first-color);
 }

@@ -35,10 +35,10 @@ module.exports = {
   methods: {
     verif() {
       if (window.location.hash === "#/register") {
-        console.log("register");
+        /* console.log("register"); */
         this.displayRegister = 1;
       } else if (window.location.hash === "#/login") {
-        console.log("login");
+        /* console.log("login"); */
         this.displayRegister = 0;
       }
     },
