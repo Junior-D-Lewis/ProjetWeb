@@ -7,12 +7,8 @@
 
           <div class="container">
             <p>Texte dans la fenêtre modale.</p>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
+            <Login></Login>
+            
           </div>
         </div>
       </div>
@@ -21,17 +17,23 @@
 </template>
 
 <script>
+
+const Login = window.httpVueLoader('../components/Login.vue')
+
 module.exports = {
   data: function () {
     return {};
   },
   components: {
-    Modal,
+    Modal, Login
   },
 };
 </script>
 
 <style lang="css" scoped>
+
+h1{color: black;}
+
 /* Décrire l'animation */
 @keyframes slideDownFadeIN {
   from {

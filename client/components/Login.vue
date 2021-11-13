@@ -1,45 +1,86 @@
 <template>
- <div class="l-form">
-            <form action="" class="form">
-                <h1 class="form__title">Connexion</h1>
+  <div class="l-form">
+    <form v-on:submit.prevent="handleForm" class="form">
+      <h1 class="form__title">Connexion</h1>
 
-                <div class="form__div">
-                    <input type="text" class="form__input" placeholder=" ">
-                    <label for="" class="form__label">Email</label>
-                </div>
+      <div class="form__div">
+        <input
+          type="text"
+          v-on:keydown="handleEmail"
+          v-model="email"
+          class="form__input"
+          id="email"
+          placeholder=" "
+        />
+        <label for="" class="form__label">Email</label>
+        <small>okkkkkkkkkkkk</small>
+      </div>
 
-                <div class="form__div">
-                    <input type="password" class="form__input" placeholder=" ">
-                    <label for="" class="form__label">Mot de passe</label>
-                </div>       
+      <div class="form__div">
+        <input
+          type="password"
+          v-on:keydown="handlePass"
+          class="form__input"
+          id="password"
+          placeholder=" "
+        />
+        <label for="" class="form__label">Mot de passe</label>
+       
+      </div>
 
-                <input type="submit" class="form__button" value="Login">
-            </form>
-        </div>
+      <input type="submit" class="form__button" value="Login" />
+    </form>
+  </div>
 </template>
 
 <script>
 module.exports = {
   component: {
-    Register,
+    Login,
+  },
+
+  data() {
+    return {
+      email: "",
+      password: "",
+      text: "error",
+    };
+  },
+  methods: {
+    setErrorFor(input, message) {
+      input.style.color = 'red'
+      input.innerText = message
+    },
+    setSuccessFor(input) {
+      input.style.color='green'
+      input.innerText ='Good email'
+    },
+    isEmail(email) {
+      const regex =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return regex.test(email);
+    },
+    handleForm() {},
+    handleEmail() {
+      const small = window.document.querySelector("small");
+      if (this.isEmail(this.email)) {
+        this.setSuccessFor(small)
+      } else {
+        this.setErrorFor(small,"error")
+      }
+
+    },
+    handlePass() {},
   },
 };
 </script>
 
 <style>
-/*===== GOOGLE FONTS =====*/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-/*===== VARIABLES CSS =====*/
 :root {
   /*===== Colores =====*/
   --first-color: #1a73e8;
   --input-color: #80868b;
   --border-color: #dadce0;
-
-  /*===== Fuente y tipografia =====*/
-  --body-font: "Roboto", sans-serif;
-  --normal-font-size: 1rem;
-  --small-font-size: 0.75rem;
 }
 
 /*===== BASE =====*/
@@ -51,8 +92,6 @@ module.exports = {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
 }
 h1 {
   margin: 0;
@@ -77,7 +116,7 @@ h1 {
 }
 .form__div {
   position: relative;
-  height: 48px;
+  height: 80px;
   margin-bottom: 1.5rem;
 }
 .form__input {
@@ -85,7 +124,7 @@ h1 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100%-20px);
   font-size: var(--normal-font-size);
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
@@ -143,5 +182,11 @@ h1 {
 /*Input focus*/
 .form__input:focus {
   border: 1.5px solid var(--first-color);
+}
+
+small {
+  color: red;
+  position: absolute;
+  bottom: 0;
 }
 </style>
