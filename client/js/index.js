@@ -1,46 +1,20 @@
-/* const Modal = window.httpVueLoader('../components/modal.vue')
- */
 
-/* Temporaire */
-const Modal = 
-{ 
-    template: `<a href="#id01">Ouvrir la fenêtre modale</a>
-
-    <div id="id01" class="modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <header class="container">
-            <a href="#" class="closebtn">×</a>
-            <h2>Entête de modale</h2>
-          </header>
-          <div class="container">
-            <p>Texte dans la fenêtre modale.</p>
-          </div>
-          <footer class="container">
-            <p>Pied de page de modale</p>
-          </footer>
-        </div>
-      </div>
-    </div>
-    ` 
-}
-const Login = { template: '<div>bar</div>' }
+const Register = window.httpVueLoader('./components/Register.vue')
+const Modal = window.httpVueLoader('./components/Modal.vue')
 
 const routes = [
-    { path: '/register', component: Modal },
-    { path: '/login', component: Login }
+  { path: '/register', component: Register },
+  { path: '/login', component: Modal }
 ]
 
 const router = new VueRouter({
-    routes 
+  routes
 })
 
 const app = new Vue({
     el: "#app",
     router,
-    /* components: { 
-        Modal
-    }, */
+
     data: {
         advantages: [
             {
@@ -59,5 +33,14 @@ const app = new Vue({
                 text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ipsa eveniet alias!"
             }
         ]
+    }, 
+    methods: {
+      simulateClick()
+      {
+        setTimeout(() => {
+          window.document.getElementById("launchModal").click()
+        }, 100);
+        
+      },
     }
 })

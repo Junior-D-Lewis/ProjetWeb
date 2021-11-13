@@ -12,11 +12,16 @@
 body
 {
     background-color: #f8f8f8;
+    font-family: 'Quicksand', sans-serif;
+}
+h1, h2, h3, h4, h5
+{
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* --------------------------------- Header ----------------------------------- */
 
-header
+#app header
 {
     color: white;
     height: 100vh;
@@ -54,6 +59,10 @@ header
 {
     color: white;
     background: transparent;
+}
+#launchModal
+{
+    visibility: hidden;
 }
 /* For phones */
 @media screen and (max-width: 520px) {
