@@ -50,6 +50,7 @@ module.exports = {
 </script>
 
 <style lang="css" scoped>
+
 /* Décrire l'animation */
 @keyframes slideDownFadeIN {
   from {
