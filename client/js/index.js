@@ -6,7 +6,7 @@ const Modal = window.httpVueLoader('./components/Modal.vue')
 const routes = [
     { path: '/register', component: Register },
     /* { path: '/login', component: Login }, */
-    { path: '/login', component: Modal }
+    { path: '/login', component: Modal },
 ]
 
 const router = new VueRouter({
