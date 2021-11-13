@@ -7,7 +7,9 @@
 }
 :root {
     --primary: orangered;
-    --secondary: rgb(60, 60, 255);
+    --first-color: #1a73e8;
+    --input-color: #80868b;
+    --border-color: #dadce0;
 }
 body
 {

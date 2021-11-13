@@ -5,14 +5,11 @@
         <div class="modal-content">
           <a href="#" class="closebtn">×</a>
 
-          <div class="container">
-            <p>Texte dans la fenêtre modale.</p>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
-            <h1>vrefrez</h1>
+          <div class="container" v-if="displayRegister">
+            <Register></Register>
+          </div>
+          <div class="container" v-else>
+            <Login></Login>
           </div>
         </div>
       </div>
@@ -21,12 +18,33 @@
 </template>
 
 <script>
+const Register = window.httpVueLoader("../components/Register.vue");
+const Login = window.httpVueLoader("../components/Login.vue");
+
 module.exports = {
-  data: function () {
-    return {};
-  },
   components: {
     Modal,
+    Register,
+    Login,
+  },
+  data: function () {
+    return {
+      displayRegister: 0,
+    };
+  },
+  methods: {
+    verif() {
+      if (window.location.hash === "#/register") {
+        console.log("register");
+        this.displayRegister = 1;
+      } else if (window.location.hash === "#/login") {
+        console.log("login");
+        this.displayRegister = 0;
+      }
+    },
+  },
+  mounted() {
+    this.verif();
   },
 };
 </script>
@@ -35,7 +53,7 @@ module.exports = {
 /* Décrire l'animation */
 @keyframes slideDownFadeIN {
   from {
-    top: -100px;
+    top: -150px;
     opacity: 0;
   }
   to {
@@ -53,6 +71,7 @@ module.exports = {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.594);
+  color: var(--primary);
 }
 
 /* Afficher la fenêtre modale lorsqu'elle est ciblée par un lien supprimer */
@@ -63,6 +82,7 @@ module.exports = {
 
 /* la fenêtre modale  */
 .modal-dialog {
+  border-radius: 1rem;
   display: table-cell;
   vertical-align: middle;
 }
@@ -76,6 +96,7 @@ module.exports = {
     padding: 0;
     outline: 0;
     border: 1px #ccc solid;
+    border-radius: 1rem;
     text-align: justify;
     width: 40%;
 
@@ -92,6 +113,7 @@ module.exports = {
     padding: 0px;
     outline: 0;
     border: 1px #ccc solid;
+    border-radius: 1rem;
     text-align: justify;
     width: 93%;
     animation-name: slideDownFadeIN;
@@ -112,7 +134,6 @@ module.exports = {
 
 .closebtn:hover,
 .closebtn:focus {
-  color: #000;
   text-decoration: none;
   cursor: pointer;
 }

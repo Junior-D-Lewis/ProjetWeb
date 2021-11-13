@@ -47,16 +47,8 @@ module.exports = {
 </script>
 
 <style>
-/*===== GOOGLE FONTS =====*/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 /*===== VARIABLES CSS =====*/
 :root {
-  /*===== Colores =====*/
-  --first-color: #1a73e8;
-  --input-color: #80868b;
-  --border-color: #dadce0;
-
-  /*===== Fuente y tipografia =====*/
   --body-font: "Roboto", sans-serif;
   --normal-font-size: 1rem;
   --small-font-size: 0.75rem;
@@ -68,25 +60,16 @@ module.exports = {
 ::after {
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-}
-h1 {
-  margin: 0;
-}
 
 /*===== FORM =====*/
 .l-form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 50px 0px;
 }
 .form {
-  width: 360px;
+  width: 90%;
   padding: 4rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
@@ -106,7 +89,6 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  font-size: var(--normal-font-size);
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   outline: none;
@@ -116,12 +98,10 @@ h1 {
 }
 .form__label {
   position: absolute;
+  color: black;
   left: 1rem;
   top: 1rem;
   padding: 0 0.25rem;
-  background-color: #fff;
-  color: var(--input-color);
-  font-size: var(--normal-font-size);
   transition: 0.3s;
 }
 .form__button {
@@ -132,7 +112,6 @@ h1 {
   border: none;
   background-color: var(--first-color);
   color: #fff;
-  font-size: var(--normal-font-size);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
@@ -149,6 +128,7 @@ h1 {
   font-size: var(--small-font-size);
   font-weight: 500;
   z-index: 10;
+  background-color: #F3F3F3;
 }
 
 /*Input focus sticky top label*/

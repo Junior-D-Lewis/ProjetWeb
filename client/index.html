@@ -16,7 +16,7 @@
     <title>Meeting</title>
 </head>
 
-<body>
+<body>  
 
     <div id="app">
 
@@ -26,7 +26,7 @@
                 <a href="#id01" id="launchModal">Ouvrir la fenêtre modale</a>
                 <div id="buttons">
                     <router-link to="/register">
-                        <button>Register</button>
+                        <button v-on:click="simulateClick">Register</button>
                     </router-link>
                     <router-link to="/login" id="login" >
                         <button v-on:click="simulateClick">Login</button>
