@@ -1,10 +1,12 @@
 
-const Register = window.httpVueLoader('./components/Register.vue')
+const Register = window.httpVueLoader('../components/Register.vue')
+const Login = window.httpVueLoader('../components/Login.vue')
 const Modal = window.httpVueLoader('./components/Modal.vue')
 
 const routes = [
-  { path: '/register', component: Register },
-  { path: '/login', component: Modal }
+    { path: '/register', component: Register },
+    { path: '/login', component: Login },
+    { path: '/login', component: Modal }
 ]
 
 const router = new VueRouter({
