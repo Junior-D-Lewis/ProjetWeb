@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/index.css">
     <link rel="icon" href="./img/brand.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Quicksand&display=swap" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
@@ -20,15 +23,17 @@
         <header>
             <div id="header-content">
                 <h2> REGOIGNEZ LA COMMUNAUTÉ </h2>
+                <a href="#id01" id="launchModal">Ouvrir la fenêtre modale</a>
                 <div id="buttons">
                     <router-link to="/register">
                         <button>Register</button>
                     </router-link>
-                    <router-link to="/login">
-                        <button>Login</button>
+                    <router-link to="/login" id="login" >
+                        <button v-on:click="simulateClick">Login</button>
                     </router-link>
 
                     <router-view></router-view>
+
                 </div>
             </div>
         </header>
