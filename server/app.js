@@ -1,15 +1,14 @@
 const express = require('express');
 const bodyParser=require('body-parser');
-const path=require("path");
-const clientPath="/home/aurel-m02/Bureau/ProjetWeb/client";
-
+const path = require("path");
 
 const app=express();
 
-app.use(express.static(clientPath))
+/* Path.resolve to convert Relative path to Absolute file */
+app.use(express.static(path.resolve('../ProjetWeb/client')))
 
 app.get('/', (req, res) =>{
-    res.sendFile(clientPath+'/index.html')
+    res.sendFile('/index.html')
 })
 
 /* app.use('/',(req,res,next)=>{
