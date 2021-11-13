@@ -1,18 +1,30 @@
+<<<<<<< HEAD
 const Register = window.httpVueLoader('../components/Register.vue')
 const Login = window.httpVueLoader('../components/Login.vue')
 
 const routes = [
     { path: '/register', component: Register },
     { path: '/login', component: Login }
+=======
+
+const Register = window.httpVueLoader('./components/Register.vue')
+
+const routes = [
+  { path: '/register', component: Register },
+>>>>>>> vital
 ]
 
 const router = new VueRouter({
-    routes 
+  routes
 })
 
 const app = new Vue({
     el: "#app",
     router,
+<<<<<<< HEAD
+=======
+
+>>>>>>> vital
     data: {
         advantages: [
             {
@@ -31,5 +43,14 @@ const app = new Vue({
                 text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ipsa eveniet alias!"
             }
         ]
+    }, 
+    methods: {
+      simulateClick()
+      {
+        setTimeout(() => {
+          window.document.getElementById("launchModal").click()
+        }, 100);
+        
+      },
     }
 })
