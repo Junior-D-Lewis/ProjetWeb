@@ -20,7 +20,6 @@ h1, h2, h3, h4, h5
 {
     font-family: 'Open Sans', sans-serif;
 }
-
 /* --------------------------------- Header ----------------------------------- */
 
 #app header
@@ -41,11 +40,7 @@ h1, h2, h3, h4, h5
     margin: 15px 0px;
     text-align: center;
 }
-/* #buttons a
-{
-    padding: 50px;
-    background-color: red;
-} */
+
 #buttons button
 {
     color: black;

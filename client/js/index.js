@@ -2,7 +2,9 @@
 const Register = window.httpVueLoader('./components/Register.vue')
 const Login = window.httpVueLoader('./components/Login.vue')
 const Modal = window.httpVueLoader('./components/Modal.vue')
+const Card = window.httpVueLoader('./components/Card.vue')
 
+  
 const routes = [
   { path: '/register', component: Modal },
   { path: '/login', component: Modal }
@@ -15,6 +17,9 @@ const router = new VueRouter({
 const app = new Vue({
   el: "#app",
   router,
+  components: {
+    Card
+  },
   data: {
     advantages: [
       {

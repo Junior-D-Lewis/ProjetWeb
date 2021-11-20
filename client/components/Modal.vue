@@ -3,7 +3,7 @@
     <div id="id01" class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="closebtn">×</a>
+          <a href="#" class="closebtn" v-on:click="verif">×</a>
 
           <div class="container" v-if="displayRegister">
             <Register></Register>
@@ -35,12 +35,14 @@ module.exports = {
   methods: {
     verif() {
       if (window.location.hash === "#/register") {
-        /* console.log("register"); */
+        /* window.document.body.style.overflowY = "hidden"; */
         this.displayRegister = 1;
       } else if (window.location.hash === "#/login") {
-        /* console.log("login"); */
+       /*  window.document.body.style.overflowY = "hidden"; */
         this.displayRegister = 0;
-      }
+      } /* else {
+        window.document.body.style.overflowY = "auto";
+      } */
     },
   },
   mounted() {
@@ -50,7 +52,6 @@ module.exports = {
 </script>
 
 <style lang="css" scoped>
-
 /* Décrire l'animation */
 @keyframes slideDownFadeIN {
   from {
@@ -62,7 +63,6 @@ module.exports = {
     opacity: 1;
   }
 }
-
 /* Foncer l'arrière-plan de la fenêtre modale */
 .modal {
   display: none;
@@ -70,7 +70,6 @@ module.exports = {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0, 0, 0, 0.594);
   color: var(--primary);
 }
