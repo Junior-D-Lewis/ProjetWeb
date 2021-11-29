@@ -7,7 +7,7 @@ const app=express();
 /* Path.resolve to convert Relative path to Absolute file */
 app.use(express.static(path.resolve('../ProjetWeb/client')))
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
     res.sendFile('/index.html')
 })
 

@@ -1,7 +1,7 @@
 <template>
   <div class="l-form">
     <form v-on:submit.prevent="handleForm" class="form">
-      <h1 class="form__title">Créer un compte</h1>
+      <h1 class="form__title">Créer un compte </h1>
 
       <div class="form__div">
         <input
@@ -83,7 +83,7 @@
 <script>
 module.exports = {
   component: {
-    Login,
+    Register,
   },
   data() {
     return {
@@ -119,12 +119,10 @@ module.exports = {
 
       if (this.nom.length <= 2) {
         this.setErrorFor(small, "Nom trop court");
-                return false
-
+        return false;
       } else {
         this.setSuccessFor(small, "Nom validé");
-                return true
-
+        return true;
       }
     },
     handlePrenom() {
@@ -132,63 +130,64 @@ module.exports = {
 
       if (this.prenom.length <= 2) {
         this.setErrorFor(small, "Prénom trop court");
-        return false
+        return false;
       } else {
         this.setSuccessFor(small, "Prénom validé");
-        return true
+        return true;
       }
     },
     handleEmail() {
       const small = window.document.getElementById("errorMail");
       if (this.isEmail(this.email)) {
         this.setSuccessFor(small, "Good mail");
-                return true
-
+        return true;
       } else {
         this.setErrorFor(small, "Error");
-                return false
-
+        return false;
       }
     },
     handlePassword() {
       const small = window.document.getElementById("errorPassword");
       if (this.isPassword(this.mdp)) {
         this.setSuccessFor(small, "Strong Password");
-                return true
-
+        return true;
       } else {
         this.setErrorFor(small, "Error");
-                return false
-
+        return false;
       }
     },
     confirmPassword() {
       const small = window.document.getElementById("confirmation");
       if (this.mdp === this.confirmMdp) {
         this.setSuccessFor(small, "Password confirmed");
-                return true
-
+        return true;
       } else {
         this.setErrorFor(small, "Error");
-                return false
-
+        return false;
       }
     },
-    handleForm()
-    {
-      if( this.handleNom() && this.handlePrenom() && this.handleEmail() && this.handlePassword() && this.confirmPassword())
-      {
-        let data = {nom: this.nom, prenom: this.prenom, mail: this.email, numeroPiece: this.numeroPiece, password: this.mdp}
-        console.log(data)
-        /*
-          Code backend 
-        */
+    handleForm() {
+      if (
+        this.handleNom() &&
+        this.handlePrenom() &&
+        this.handleEmail() &&
+        this.handlePassword() &&
+        this.confirmPassword()
+      ) {
+        let data = {
+          nom: this.nom,
+          prenom: this.prenom,
+          mail: this.email,
+          numeroPiece: this.numeroPiece,
+          password: this.mdp,
+        };
+        console.log(data);
+        alert("Votre compte a été bien crée");
+        this.$router.push("/");
+      } else {
+        alert("Erreur détectée");
       }
-      else
-      {
-        alert("Erreur détectée")
-      }
-    }
+    },
   },
 };
 </script>
@@ -213,7 +212,7 @@ module.exports = {
   padding: 50px 0px;
 }
 .form {
-  width: 90%;
+  width: 95%;
   padding: 4rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);

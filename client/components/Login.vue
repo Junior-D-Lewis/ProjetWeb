@@ -62,18 +62,27 @@ module.exports = {
       const small = window.document.getElementById("errorMail");
       if (this.isEmail(this.email)) {
         this.setSuccessFor(small);
+        return true;
       } else {
         this.setErrorFor(small, "error");
+        return false;
       }
     },
     handleForm() {
-      let data = {email: this.email, password: this.password}
-      console.log(data)
-
+      if (this.handleEmail() === true) {
+        let data = { email: this.email, password: this.password };
+        console.log(data);
+        
+        router.push({ path: '/home', params: data })       
+      }
+      else
+      {
+        return;
+      }
       /*
         For DEV BACKEND
         If bad response of server, Alert the error
-      */  
+      */
     },
   },
 };
@@ -98,7 +107,7 @@ module.exports = {
   padding: 50px 0px;
 }
 .form {
-  width: 90%;
+  width: 95%;
   padding: 4rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
@@ -125,8 +134,7 @@ module.exports = {
   background: none;
   z-index: 1;
 }
-small
-{
+small {
   position: absolute;
   bottom: 0;
 }
@@ -161,7 +169,7 @@ small
   font-size: var(--small-font-size);
   font-weight: 500;
   z-index: 10;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
 }
 
 .form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {

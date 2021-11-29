@@ -2,30 +2,31 @@
   <div>
     <div class="card">
       <div class="card-left">
-        <img :src="url"/>
+        <img :src="url" />
       </div>
       <div class="card-right">
-        <h1> {{title}} </h1>
-        <br /><br />
+        <h1>{{ title }}</h1>
+        <br />
         <div class="infos">
           <p>
             <img src="../img/calendar-date.png" alt="" />
-            {{date}}
+            {{ date }}
           </p>
           <p>
             <img src="../img/location.png" alt="" />
-            {{location}}
+            {{ location }}
           </p>
           <p>
             <img src="../img/chair.png" alt="" />
-            Places restantes: {{lastPlaces}}
+            Places restantes: {{ lastPlaces }}
           </p>
           <p>
             <img src="../img/email.png" alt="" />
-            Offres: {{offer}}
+            Offres: {{ offer }}
           </p>
         </div>
-        <button>Voir plus</button>
+        <br>
+        <router-link to="/home/:id"> En savoir plus </router-link>
       </div>
     </div>
   </div>
@@ -36,28 +37,10 @@ module.exports = {
   components: {
     Card,
   },
-  props: ['title', 'url', 'date', 'location', 'lastPlaces', 'offer'],
+  props: ["title", "url", "date", "location", "lastPlaces", "offer"],
   data() {
     return {
-      events: [
-        {
-          id: 1,
-          url: "../img/cover.jpg",
-          date: "15/12/2021",
-          location: "Villejuif",
-          lastPlaces: 12,
-          offer: false,
-        },
-        {
-          id: 2,
-          title: "Titre de l'évènement",
-          url: "../img/cover.jpg",
-          date: "15/12/2021",
-          location: "Villejuif",
-          lastPlaces: 12,
-          offer: false,
-        },
-      ],
+      
     };
   },
 };
@@ -68,6 +51,7 @@ module.exports = {
   .card {
     margin: 20px;
     box-shadow: 0px 5px 10px #ccc;
+    background-color: white;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -81,7 +65,9 @@ module.exports = {
   }
 }
 .card-left img {
+  padding: 20px;
   width: 100%;
+  margin: auto;
   height: 100%;
 }
 .card-right {
@@ -95,18 +81,5 @@ module.exports = {
 .infos img {
   width: 30px;
   margin: 0px 25px;
-}
-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 0.75rem 2rem;
-  outline: none;
-  border: none;
-  background-color: var(--first-color);
-  color: #fff;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
 }
 </style>
