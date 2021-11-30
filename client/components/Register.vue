@@ -192,7 +192,7 @@ module.exports = {
 };
 </script>
 
-<style>
+<style scoped>
 /*===== VARIABLES CSS =====*/
 :root {
   --normal-font-size: 1rem;
