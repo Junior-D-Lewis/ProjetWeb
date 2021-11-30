@@ -100,15 +100,20 @@ header {
   align-items: center;
   justify-content: center;
 }
+header h2
+{
+  font-size: 3em;
+}
 #buttons {
   margin: 15px 0px;
   text-align: center;
 }
 
 #buttons button {
+  font-size: 1.2em;
   color: black;
-  width: 130px;
-  padding: 15px 20px;
+  width: 150px;
+  padding: 20px 20px;
   background-color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: 15px;
@@ -116,8 +121,8 @@ header {
   transition: all 200ms ease-in;
 }
 #buttons button:hover {
-  color: white;
-  background: transparent;
+  font-weight: bold;
+  background: var(--lightPrimary);
 }
 #launchModal {
   visibility: hidden;

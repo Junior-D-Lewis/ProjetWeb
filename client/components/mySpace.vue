@@ -10,6 +10,8 @@
     <div class="right">
       <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
       <br />
+      <hr />
+      <br />
       <div class="event">
         <h3>Titre de l'évènement</h3>
         <p>10/12/2021</p>
@@ -37,23 +39,21 @@ module.exports = {
 </script>
 
 <style scoped>
-
 .event {
   border: 1px solid transparent;
   box-shadow: 0px 5px 10px #ccc;
   position: relative;
   padding: 20px;
 }
-.close {
+button {
   position: absolute;
   top: 10px;
   right: 10px;
-}
-button {
   border: none;
   outline: none;
-  background-color: none;
+  background-color: inherit;
   color: red;
+  font-weight: bold;
   cursor: pointer;
 }
 @media (min-width: 700px) {
@@ -72,28 +72,36 @@ button {
     text-align: center;
   }
   .right {
-  padding: 20px;
-}
-
+    padding: 20px;
+  }
+  hr {
+    background-color: #ccc;
+    height: 1px;
+    border: none;
+  }
 }
 @media (max-width: 699px) {
   #myspace {
     grid-template-columns: 1fr;
   }
-    .left {
+  .left {
     border-right: 1px solid #ccc;
     background-color: var(--primary);
-    height: 40vh;
+    height: 30vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
-  }.right {
-  padding: 20px;
-}
-.right {
-  padding: 6px;
-}
+  }
+  .right {
+    text-align: center;
+    padding: 6px;
+  }
+  hr {
+    background-color: #ccc;
+    height: 1px;
+    border: none;
+  }
 }
 </style>

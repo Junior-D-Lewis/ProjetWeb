@@ -6,19 +6,16 @@
     box-sizing: border-box;
 }
 :root {
-    --primary: orangered;
+    --primary: rgb(0, 139, 210);
+    --lightPrimary: rgb(50, 161, 218);
     --first-color: #1a73e8;
     --input-color: #80868b;
     --border-color: #dadce0;
 }
-body
+body, button, input
 {
     background-color: #f8f8f8;
     font-family: 'Quicksand', sans-serif;
-}
-h1, h2, h3, h4, h5
-{
-    font-family: 'Open Sans', sans-serif;
 }
 
 /* --------------------------------- MENU STYLES ------------------------------ */
@@ -117,7 +114,7 @@ h1, h2, h3, h4, h5
   }
   
   .menu-wrap .menu {
-    background-color: rgba(0, 0, 0, 0.800);
+    background-color: rgba(0, 0, 0, 0.9);
 
     position: fixed;
     top: 0;

@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
     res.sendFile('/index.html')
 })
 
-
 app.use('/register',registerRouter(pgClient));
 //app.use('/login',loginRouter(pgClient));
 

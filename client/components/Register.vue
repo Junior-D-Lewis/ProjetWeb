@@ -192,7 +192,7 @@ module.exports = {
 };
 </script>
 
-<style>
+<style scoped>
 /*===== VARIABLES CSS =====*/
 :root {
   --normal-font-size: 1rem;
@@ -212,7 +212,7 @@ module.exports = {
   padding: 50px 0px;
 }
 .form {
-  width: 95%;
+  width: 40%;
   padding: 4rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
@@ -237,7 +237,7 @@ module.exports = {
   outline: none;
   padding: 1rem;
   background: none;
-  z-index: 1;
+  z-index: 0;
 }
 small {
   position: absolute;
@@ -253,8 +253,8 @@ small {
 }
 .form__button {
   display: block;
-  margin-left: auto;
-  padding: 0.75rem 2rem;
+  width: 100%;
+  padding: 1rem 2rem;
   outline: none;
   border: none;
   background-color: var(--first-color);
