@@ -6,13 +6,12 @@ function config(){
         user: 'postgres',
         host: 'localhost',
         password: 'root',
-        database: 'postgres'
+        database: 'web_project'
     })
     
     client.connect();
 
-    return client;
-    
+    return client;   
 }
 
 
