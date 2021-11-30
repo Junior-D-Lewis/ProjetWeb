@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser=require('body-parser');
 const path = require("path");
+const registerRouter=require("./routes/register.js");
+const loginRouter=require("./routes/login.js");
+
+const pgClient=require('./db_config/db');
 
 const app=express();
 
@@ -11,8 +15,8 @@ app.get('/', (req, res) => {
     res.sendFile('/index.html')
 })
 
-/* app.use('/',(req,res,next)=>{
-    res.status(200).sendFile("index.html",{root: path.join(clientPath)});
-}); */
+
+app.use('/register',registerRouter(pgClient));
+//app.use('/login',loginRouter(pgClient));
 
 module.exports=app;
