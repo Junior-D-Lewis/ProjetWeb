@@ -110,9 +110,10 @@ header h2
 }
 
 #buttons button {
+  font-size: 1.2em;
   color: black;
-  width: 130px;
-  padding: 15px 20px;
+  width: 150px;
+  padding: 20px 20px;
   background-color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: 15px;
@@ -120,8 +121,8 @@ header h2
   transition: all 200ms ease-in;
 }
 #buttons button:hover {
-  color: white;
-  background: transparent;
+  font-weight: bold;
+  background: var(--lightPrimary);
 }
 #launchModal {
   visibility: hidden;
