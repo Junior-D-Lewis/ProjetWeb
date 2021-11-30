@@ -100,6 +100,10 @@ header {
   align-items: center;
   justify-content: center;
 }
+header h2
+{
+  font-size: 3em;
+}
 #buttons {
   margin: 15px 0px;
   text-align: center;

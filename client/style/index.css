@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5
   }
   
   .menu-wrap .menu {
-    background-color: rgba(0, 0, 0, 0.800);
+    background-color: rgba(0, 0, 0, 0.9);
 
     position: fixed;
     top: 0;
