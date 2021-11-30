@@ -65,7 +65,6 @@ module.exports = {
   }
 }
 .card-left img {
-  padding: 20px;
   width: 100%;
   margin: auto;
   height: 100%;
@@ -74,7 +73,6 @@ module.exports = {
   position: relative;
   margin: 20px;
 }
-
 .infos p {
   display: flex;
 }

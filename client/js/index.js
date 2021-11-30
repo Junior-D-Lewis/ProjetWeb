@@ -35,5 +35,4 @@ const app = new Vue({
     Card, Home, Auth, Login, Focus, mySpace
   },
 
-
 })

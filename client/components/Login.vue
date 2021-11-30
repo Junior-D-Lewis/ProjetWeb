@@ -149,8 +149,8 @@ small {
 }
 .form__button {
   display: block;
-  margin-left: auto;
-  padding: 0.75rem 2rem;
+  width: 100%;
+  padding: 1rem 2rem;
   outline: none;
   border: none;
   background-color: var(--first-color);

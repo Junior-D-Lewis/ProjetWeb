@@ -2,7 +2,7 @@
   <div id="focus">
     <div class="cover"></div>
     <div class="content">
-      <h2>Lrunt ratexcepturi, quae ea officiis. Eaque?</h2>
+      <h1>Lrunt ratexcepturi, quae ea officiis. Eaque?</h1>
       <div class="details">
         <div class="left">
           <h3> Date : </h3>
@@ -32,7 +32,7 @@
         </p>
       </div>
 
-      <button>Apply to this event</button>
+      <button v-on:click="apply()">Apply to this event</button>
     </div>
   </div>
 </template>
@@ -42,6 +42,14 @@ module.exports = {
   component: {
     Focus,
   },
+  methods: {
+    apply: function()
+    {
+      /*
+        Backend to add to ..... 
+      */
+    }
+  }
 };
 </script>
 
