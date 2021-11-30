@@ -19,7 +19,6 @@
 
 <script>
 const Register = window.httpVueLoader("../components/Register.vue");
-const Login = window.httpVueLoader("../components/Login.vue");
 
 module.exports = {
   components: {
@@ -70,7 +69,6 @@ module.exports = {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.594);
   color: var(--primary);
 }
 
@@ -78,6 +76,7 @@ module.exports = {
 .modal:target {
   display: table;
   position: absolute;
+  background-color: black;
 }
 
 /* la fenêtre modale  */
@@ -107,17 +106,7 @@ module.exports = {
 
 @media (max-width: 699px) {
   .modal-dialog .modal-content {
-    margin: auto;
-    background-color: #f3f3f3;
-    position: relative;
-    padding: 0px;
-    outline: 0;
-    border: 1px #ccc solid;
-    border-radius: 1rem;
-    text-align: justify;
-    width: 93%;
-    animation-name: slideDownFadeIN;
-    animation-duration: 0.5s;
+    width: 98%;
   }
 }
 
@@ -138,7 +127,4 @@ module.exports = {
   cursor: pointer;
 }
 
-.container {
-  padding: 2px 16px;
-}
 </style>

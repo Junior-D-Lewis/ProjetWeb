@@ -5,67 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ressources -->
     <link rel="stylesheet" href="./style/index.css">
     <link rel="icon" href="./img/brand.png">
+    <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Quicksand&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Quicksand&display=swap"
+        rel="stylesheet">
+    <!-- Vuejs -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <!-- Font-awesome -->
+    <link href="./font-awesome/all.css" rel="stylesheet">
+    <script src="./font-awesome/all.js"></script>
+
     <title>Meeting</title>
 </head>
 
-<body>  
+<body>
 
     <div id="app">
+        <div class="menu-wrap">
+            <input type="checkbox" class="toggler">
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
+                <div>
+                    <div>
+                        <ul>
+                            <li>
+                                <router-link to="/home">
+                                    Home
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/mySpace">
+                                    Mon espace
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/deconnxion">
+                                    Déconnexion
+                                </router-link>
+                            </li>
 
-        <header>
-            <div id="header-content">
-                <h2> REGOIGNEZ LA COMMUNAUTÉ </h2>
-                <a href="#id01" id="launchModal">Ouvrir la fenêtre modale</a>
-                <div id="buttons">
-                    <router-link to="/register">
-                        <button v-on:click="simulateClick">Register</button>
-                    </router-link>
-                    <router-link to="/login" id="login" >
-                        <button v-on:click="simulateClick">Login</button>
-                    </router-link>
-
-                    <router-view></router-view>
-
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <!-- <div id="aa">
-            <card title="titre" url="./img/cover.jpg" date="12/12/2021" location="calavi" lastPlaces="12" offer="Yes"></card>
-        </div> -->
+        <router-view></router-view>
 
-
-
-        <main>
-
-            <h2> AVANTAGES </h2>
-            <span id="divider"></span>
-
-            <div id="advantages">
-                <div class="part" v-for="advantage in advantages">
-                    <img :src="advantage.url">
-                    <h4> {{advantage.title}} </h4>
-                    <p> {{advantage.text}} </p>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <!-- Un truc à completer  -->
-
-            <div id="bottom">
-                <span> &copy; <a href="https://www.efrei.fr/">EFREI PARIS</a> Students project 2021 </span>
-            </div>
-
-        </footer>
     </div>
 
     <script src="./js/index.js"></script>
