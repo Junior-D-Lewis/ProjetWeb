@@ -68,15 +68,16 @@ module.exports = {
         return false;
       }
     },
-    handleForm() {
+    async handleForm() {
       if (this.handleEmail() === true) {
         let data = { email: this.email, password: this.password };
-        console.log(data);
-        
-        router.push({ path: '/home', params: data })       
-      }
-      else
-      {
+        console.log(axios);
+
+        const response = await axios.post("http://localhost:5000/login", data);
+        console.log(response);
+
+        router.push({ path: "/home", params: data });
+      } else {
         return;
       }
       /*

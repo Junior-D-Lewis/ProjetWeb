@@ -8,6 +8,9 @@ const pgClient=require('./db_config/db');
 
 const app=express();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 /* Path.resolve to convert Relative path to Absolute file */
 app.use(express.static(path.resolve('../ProjetWeb/client')))
 
@@ -16,6 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/register',registerRouter(pgClient));
-//app.use('/login',loginRouter(pgClient));
+app.use('/login',loginRouter(pgClient));
 
 module.exports=app;
