@@ -81,6 +81,7 @@
 </template>
 
 <script>
+
 module.exports = {
   component: {
     Register,
@@ -181,6 +182,9 @@ module.exports = {
           numeroPiece: this.numeroPiece,
           password: this.mdp,
         };
+
+        axios.post("http://localhost:5000/register",data);
+
         console.log(data);
         alert("Votre compte a été bien crée");
         this.$router.push("/");

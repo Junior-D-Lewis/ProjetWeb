@@ -11,7 +11,7 @@ function registerRouter(pgClient) {
         const body = req.body;
         const result = await pgClient.query({
             text: 'SELECT nom FROM users WHERE mail=$1',
-            values: [body.email]
+            values: [body.mail]
         });
         if (result.rows.length > 0) {
             res.status(401).send("Un compte a deja cette adresse mail");
@@ -19,7 +19,7 @@ function registerRouter(pgClient) {
             const hashed_password =await bcrypt.hash(body.password, 10);
             await pgClient.query({
                 text: 'INSERT INTO users (nom,prenom,mail,password) VALUES ($1,$2,$3,$4)',
-                values: [body.nom, body.prenom, body.email, hashed_password]
+                values: [body.nom, body.prenom, body.mail, hashed_password]
             });
             res.status(200).send("Compte cree");
         }

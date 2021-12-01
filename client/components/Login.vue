@@ -33,7 +33,6 @@
 </template>
 
 <script>
-const axios = require("axios");
 module.exports = {
   component: {
     Login,
@@ -73,8 +72,10 @@ module.exports = {
       if (this.handleEmail() === true) {
         let data = { email: this.email, password: this.password };
         console.log(axios);
-        const response = await axios.post("http://localhost:5000", data);
+
+        const response = await axios.post("http://localhost:5000/login", data);
         console.log(response);
+
         router.push({ path: "/home", params: data });
       } else {
         return;
