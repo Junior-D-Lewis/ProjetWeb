@@ -9,14 +9,22 @@ function loginRouter(pgClient) {
         const body=req.body;
         const result = await pgClient.query({
             text: 'SELECT nom,prenom,password FROM users WHERE mail=$1',
-            values: [email]
+            values: [body.email]
         });
-        if(result.rows.length>0){
-            if(bcrypt.compare(body.password,result.rows[0].password)==true)
-                res.status(200).json(result.rows[0]);
+        const data=result.rows[0];
+        console.log();
+        if(data){
+            const result2=bcrypt.compare(body.password,data.password)
+            if(result2)
+                res.status(200).json({nom:data.nom,prenom:data.prenom});
+            else
+                res.status(401).send("Authentification echouee");
+
             
         }
-        res.status(200).send("Login client")
+        else{
+            res.status(401).send("Authentification echouee");
+        }
         return;
     });
     
@@ -26,6 +34,9 @@ function loginRouter(pgClient) {
         res.status(200).send("Admin login")
         return;
     });
+
+
+    return router;
 
 }
 

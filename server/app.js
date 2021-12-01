@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/register',registerRouter(pgClient));
-//app.use('/login',loginRouter(pgClient));
+app.use('/login',loginRouter(pgClient));
 
 module.exports=app;
