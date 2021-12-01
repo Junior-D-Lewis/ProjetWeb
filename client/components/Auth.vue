@@ -2,8 +2,8 @@
   <div id="auth">
     <header>
       <div id="header-content">
-        <h2>REGOIGNEZ LA COMMUNAUTÉ</h2>
-        <a href="#id01" id="launchModal">Ouvrir la fenêtre modale</a>
+        <h2>JOIN THE COMMUNITY ...</h2>
+        <!-- <a href="#id01" id="launchModal">Ouvrir la fenêtre modale</a> -->
         <div id="buttons">
           <router-link to="/register">
             <button>Register</button>
@@ -17,6 +17,7 @@
 
     <main>
       <h2>AVANTAGES</h2>
+
       <span id="divider"></span>
 
       <div id="advantages">
@@ -28,28 +29,24 @@
       </div>
     </main>
 
-    <footer>
-      <div id="bottom">
-        <span>
-          &copy; <a href="https://www.efrei.fr/">EFREI PARIS</a> Students
-          project 2021
-        </span>
-      </div>
-    </footer>
+    <Bottom></Bottom>
   </div>
 </template>
 
 <script>
+const Bottom = window.httpVueLoader("./components/Bottom.vue");
+
 const Register = window.httpVueLoader("./components/Register.vue");
 const Login = window.httpVueLoader("./components/Login.vue");
-const Modal = window.httpVueLoader("./components/Modal.vue");
 
 module.exports = {
   components: {
     Auth,
-    Modal,
+    /* Modal, */
     Register,
     Login,
+    Card,
+    Bottom,
   },
 
   data() {
@@ -76,14 +73,14 @@ module.exports = {
       ],
     };
   },
-  methods: {
+  /* methods: {
     simulateClick() {
       setTimeout(() => {
         window.document.getElementById("launchModal").click();
         console.log("dd");
       }, 100);
     },
-  },
+  }, */
 };
 </script>
 
@@ -93,15 +90,14 @@ header {
   height: 100vh;
   background-image: url("../img/cover.jpg");
   background-size: cover;
-  background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.77);
+  background-blend-mode: soft-light;
+  background-color: var(--primary);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-header h2
-{
+header h2 {
   font-size: 3em;
 }
 #buttons {
@@ -113,10 +109,10 @@ header h2
   font-size: 1.2em;
   color: black;
   width: 150px;
-  padding: 20px 20px;
+  padding: 16px 20px;
   background-color: var(--primary);
   border: 2px solid var(--primary);
-  border-radius: 15px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
@@ -152,12 +148,15 @@ main h2 {
   background-color: var(--primary);
   display: block;
 }
-#advantages {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 60%;
-  margin: auto;
-  padding: 20px 0px;
+
+@media screen and (min-width: 520px) {
+  #advantages {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 60%;
+    margin: auto;
+    padding: 20px 0px;
+  }
 }
 .part {
   width: 50%;
@@ -171,21 +170,14 @@ main h2 {
   #advantages {
     display: grid;
     grid-template-columns: 1fr;
-    width: 80%;
+    width: 100%;
   }
   .part {
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
   #divider {
     width: 20%;
   }
-}
-/* -------------------------------------- Footer ------------ ------------------------------ */
-
-#bottom {
-  background-color: var(--primary);
-  padding: 28px 0px;
-  text-align: center;
 }
 </style>

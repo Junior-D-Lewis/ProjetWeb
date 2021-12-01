@@ -12,7 +12,7 @@
         date="12/23/21"
         url="../img/woman.jpg"
         location="France"
-        lastPlaces="32"
+        last-places=32
         offer="Yes"
       ></Card>
       <Card
@@ -20,7 +20,7 @@
         date="12/23/21"
         url="../img/brand.png"
         location="France"
-        lastPlaces="32"
+        last-places="32"
         offer="Yes"
       ></Card>
       <Card
@@ -28,12 +28,13 @@
         date="12/23/21"
         url="../img/brand.png"
         location="France"
-        lastPlaces="32"
+        last-places=32
         offer="Yes"
       ></Card>
     </div>
   </div>
 </template>
+
 <script>
 const Card = window.httpVueLoader("../components/Card.vue");
 
