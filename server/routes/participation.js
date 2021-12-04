@@ -48,21 +48,38 @@ function participationRouter(pgClient) {
 
     router.post("/", async (req, res) => {
         const body = req.body;
-        if (req.session.id == null)
+        console.log(req.session.user.id+"  "+ body.event_id);
+
+        if (req.session.user.id == null)
             res.status(400).send("Vous devez vous authentifier !!");
         else {
-            const result_1 =await pgClient.query({
-                text: "SELECT id FROM participations WHERE user_id=$1 and event_id=$2)",
-                values: [req.session.id, body.event_id]
+            const result_1 = await pgClient.query({
+                text: "SELECT id FROM participations WHERE user_id=$1 and event_id=$2",
+                values: [req.session.user.id, body.event_id]
+            })
+            const result_2 = await pgClient.query({
+                text: "SELECT available_seats FROM events WHERE id=$1",
+                values: [body.event_id]
             })
 
-            if(result_1.rows[0]==null)
+            if (result_1.rows[0] != null)
                 res.status(400).send("Vous participez deja a l'evenement");
-            else{
-                const result_2 = await pgClient.query({
+            else if (result_2.rows[0].available_seats == 0) {
+                res.status(400).send("Toutes les places sont prises");
+            }
+            else {
+                console.log(req.session.user.id+"  "+ body.event_id);
+                const result_3 = await pgClient.query({
                     text: "INSERT INTO participations(user_id,event_id) VALUES($1,$2)",
-                    values: [req.session.id, body.event_id]
+                    values: [req.session.user.id, body.event_id]
                 });
+                console.log(result_3);
+
+                const result_4 = await pgClient.query({
+                    text: "UPDATE events SET available_seats=$1 WHERE id=$2",
+                    values: [result_2.rows[0].available_seats-1, body.event_id]
+                });
+                res.status(200).send("OK");
             }
 
         }
@@ -71,14 +88,23 @@ function participationRouter(pgClient) {
 
     router.delete("/event/:id", async (req, res) => {
 
-        if (req.session.id == null)
+        if (req.session.user.id == null)
             res.status(400).send("Vous devez vous authentifier !!");
         else {
             const result = await pgClient.query({
                 text: " DELETE FROM participation WHERE event_id=$1 and user_id=$2",
-                values: [req.params.id, req.session.id]
+                values: [req.params.id, req.session.user.id]
             });
 
+            const result_2 = await pgClient.query({
+                text: "SELECT available_seats FROM events WHERE id=$1",
+                values: [req.params.id]
+            });
+
+            const result_3= await pgClient.query({
+                text: "UPDATE events SET available_seats=$1 WHERE id=$2",
+                values: [result_2.rows[0].available_seats+1,req.params.id]
+            });
         }
         res.status(200).send("Deleted");
         return;
