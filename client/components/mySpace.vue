@@ -1,30 +1,23 @@
 <template>
-  <div>
-    <nav>
-      <div class="nav-content">
-        <i class="fas fa-user"></i>
-        <small> Name current user </small>
+  <div id="myspace">
+    <div class="left">
+      <div>
+        <i class="fas fa-user fa-3x"></i>
+        <br /><br />
+        <h3>{{userData.prenom}} {{userData.nom}}</h3>
       </div>
-    </nav>
-    <div id="myspace">
-      <div class="left">
-        <div>
-          <i class="fas fa-user fa-3x"></i>
-          <br /><br />
-          <h3>Name current user</h3>
-        </div>
-      </div>
-      <div class="right">
-        <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
-        <br />
-        <hr />
-        <br />
-        <div class="event">
-          <h3>Titre de l'évènement</h3>
-          <p>10/12/2021</p>
-          <p>54 Rue dedede Paris , France</p>
-          <button class="close">X</button>
-        </div>
+    </div>
+    <div class="right">
+      Name current user
+      <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
+      <br />
+      <hr />
+      <br />
+      <div class="event">
+        <h3>Titre de l'évènement</h3>
+        <p>10/12/2021</p>
+        <p>54 Rue dedede Paris , France</p>
+        <button class="close">X</button>
       </div>
     </div>
   </div>
@@ -34,14 +27,27 @@
 module.exports = {
   data() {
     return {
-      listEvents: []
+      nbrEvent: 0,
+      listEvents: [],
+      userData:{}
     };
   },
-  computed: {
-    nbrEvent: function() {
-      return this.listEvents.length
-    }
+  methods: {
+    getUserName: async function () {
+      const response= await axios.get("http://localhost:5000/login/who");
+      this.userData=response.data;      
+      
+    },
   },
+  computed: {
+    nbrEvent: function () {
+      return this.listEvents.length;
+    },
+
+  },
+  created:function(){
+    this.getUserName();
+  }
 };
 </script>
 

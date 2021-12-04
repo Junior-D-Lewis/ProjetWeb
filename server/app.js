@@ -6,6 +6,7 @@ const registerRouter=require("./routes/register.js");
 const loginRouter=require("./routes/login.js");
 const userRouter=require("./routes/users.js");
 const eventRouter=require("./routes/events.js");
+const participationRouter=require("./routes/participation");
 
 const pgClient=require('./db_config/db');
 
@@ -26,6 +27,7 @@ app.use('/register',registerRouter(pgClient));
 app.use('/login',loginRouter(pgClient));
 app.use('/users',userRouter(pgClient));
 app.use('/events',eventRouter(pgClient));
+app.use('/participation',participationRouter(pgClient));
 
 
 module.exports=app;

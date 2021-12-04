@@ -14,7 +14,7 @@ function loginRouter(pgClient) {
         const data=result.rows[0];
         console.log();
         if(data){
-            const result2=bcrypt.compare(body.password,data.password)
+            const result2=await bcrypt.compare(body.password,data.password)
             if(result2){
                 req.session.user={
                     id:data.user_id,
