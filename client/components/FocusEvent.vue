@@ -102,11 +102,7 @@ module.exports = {
   },
   methods: {
     apply: function(e) {
-      /* 
-        E is the id of the element who is clicked ...
-        Send to the dev Backend .... 
-      */
-     console.log(e)
+      const reponse =axios.post("http://localhost:5000/participation",{event_id:e});
     }
   },
   computed: {

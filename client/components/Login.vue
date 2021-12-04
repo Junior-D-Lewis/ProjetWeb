@@ -6,7 +6,7 @@
       <div class="form__div">
         <input
           type="text"
-          v-on:keydown="handleEmail"
+          v-on:input="handleEmail"
           v-model="email"
           class="form__input"
           id="email"
@@ -76,14 +76,14 @@ module.exports = {
         const response = await axios.post("http://localhost:5000/login", data);
         console.log(response);
 
-        router.push({ path: "/home", params: data });
+        if(response.status==200)
+          router.push({ path: "/home", params: data });
+        else{
+          /* window.alert("Authentication a echouee"); */
+        }
       } else {
         return;
       }
-      /*
-        For DEV BACKEND
-        If bad response of server, Alert the error
-      */
     },
   },
 };

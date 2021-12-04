@@ -4,10 +4,11 @@
       <div>
         <i class="fas fa-user fa-3x"></i>
         <br /><br />
-        <h3>Name current user</h3>
+        <h3>{{userData.prenom}} {{userData.nom}}</h3>
       </div>
     </div>
     <div class="right">
+      Name current user
       <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
       <br />
       <hr />
@@ -27,14 +28,25 @@ module.exports = {
   data() {
     return {
       nbrEvent: 0,
+      listEvents: [],
+      userData:{}
     };
   },
-  computed: {
-    /* Je vais verifier le tableau des elements 
-        Tableau contenant les leements que le current user a selectionné
-        Ensuite, agir sur le nbrEvent
-         */
+  methods: {
+    getUserName: async function () {
+      const response= await axios.get("http://localhost:5000/login/who");
+      this.userData=response.data;      
+      
+    },
   },
+  computed: {
+    nbrEvent: function () {
+      return this.listEvents.length;
+    },
+  },
+  created:function(){
+    this.getUserName();
+  }
 };
 </script>
 
