@@ -39,6 +39,7 @@ module.exports = {
     return {
     };
   },
+
 };
 </script>
 
@@ -64,6 +65,7 @@ module.exports = {
   width: 100%;
   margin: auto;
   height: 100%;
+  max-height: 400px;
 }
 .card-right {
   position: relative;
