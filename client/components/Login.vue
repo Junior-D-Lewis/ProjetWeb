@@ -6,7 +6,7 @@
       <div class="form__div">
         <input
           type="text"
-          v-on:keydown="handleEmail"
+          v-on:input="handleEmail"
           v-model="email"
           class="form__input"
           id="email"
