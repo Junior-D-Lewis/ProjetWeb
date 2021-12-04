@@ -1,4 +1,6 @@
 const express = require("express");
+const path = require("path");
+
 
 function participationRouter(pgClient) {
     const router = express.Router();
@@ -41,6 +43,17 @@ function participationRouter(pgClient) {
             res.status(404).send("Not found");
         else
             res.status(200).json(result.rows);
+
+        return;
+
+    });
+    router.get("/QrCode/:event_id", async (req, res) => {
+            
+        if (req.session.user== null)
+            res.status(401).send("Authentification requise");
+        /* En fonction de lidentifiant du client et de l'id de l'event on lui envoie le fichier pdf ou se trouve son QrCode*/
+        else
+            res.status(200).sendFile(path.resolve("../ProjetWeb/client/codeQr_Clients/CodeQr.pdf"));
 
         return;
 
