@@ -7,7 +7,6 @@ const loginRouter=require("./routes/login.js");
 const userRouter=require("./routes/users.js");
 const eventRouter=require("./routes/events.js");
 
-
 const pgClient=require('./db_config/db');
 
 const app=express();

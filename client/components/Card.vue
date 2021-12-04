@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="id">
     <div class="card">
       <div class="card-left">
         <img :src="url" />
@@ -26,7 +26,7 @@
           </p>
         </div>
         <br>
-        <router-link to="/home/:id"> En savoir plus </router-link>
+        <router-link :to="`/home/${id}`"> En savoir plus </router-link>
       </div>
     </div>
   </div>
@@ -34,13 +34,9 @@
 
 <script>
 module.exports = {
-  components: {
-    Card,
-  },
-  props: ["title", "url", "date", "location", "lastPlaces", "offer"],
+  props: ["id", "title", "url", "date", "location", "lastPlaces", "offer"],
   data() {
     return {
-      
     };
   },
 };
@@ -78,6 +74,6 @@ module.exports = {
 }
 .infos img {
   width: 30px;
-  margin: 0px 25px;
+  margin: 2px 25px;
 }
 </style>
