@@ -43,6 +43,7 @@ module.exports = {
     nbrEvent: function () {
       return this.listEvents.length;
     },
+
   },
   created:function(){
     this.getUserName();
@@ -51,6 +52,18 @@ module.exports = {
 </script>
 
 <style scoped>
+nav {
+  height: 60px;
+  background-color: var(--primary);
+  position: relative;
+  top: 0;
+}
+nav > .nav-content {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(-20px, -50%);
+}
 .event {
   border: 1px solid transparent;
   box-shadow: 0px 5px 10px #ccc;

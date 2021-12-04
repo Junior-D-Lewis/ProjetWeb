@@ -114,6 +114,7 @@ module.exports = {
     $route(to, from) {
       /* console.log(this.id); */
       this.id = this.$route.params.id;
+      window.scrollTo(0, 0);
     },
   },
   created() {
