@@ -1,43 +1,55 @@
 <template>
-  <div>
-    <div id="app">
-      <div class="content">
-        <p class="subtitle"><strong>Vue.js</strong> Component</p>
-        <h1 class="title">Accordion</h1>
-        <hr />
-        <p>
-          A Vue accordion component using styles provided by the Bulma CSS
-          framework.
-        </p>
-        <section class="section">
-          <h3>Single Active Item</h3>
-          <p>Only one accordion item's details will be displayed at a time.</p>
-          <accordion id="accordion-example-1" :content="example1"></accordion>
-        </section>
-        <section class="section">
-          <h3>Multiple Active Items</h3>
-          <p>
-            Add the <code>multiple</code> attribute to allow more than one
-            accordion item's details to be showing.
-          </p>
-          <accordion
-            id="accordion-example-2"
-            :content="example2"
-            multiple="multiple"
-          ></accordion>
-        </section>
-      </div>
+  <div id="admin">
+    <div class="welcome">
+      <h1>WELCOME Mrs. ADMIN</h1>
     </div>
+    <div class="routes">
+      <router-link class="list" to="/admin/list">
+        Liste des évènements
+      </router-link>
+      <router-link class="action" to="/admin/actions">
+        Effectuer une action
+      </router-link>
+    </div>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 module.exports = {
+
   data() {
     return {};
   },
 };
 </script>
 
-<style>
+<style scoped>
+#admin {
+  text-align: center;
+}
+.welcome {
+  padding: 30px 0px;
+}
+.routes {
+  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 20px 0px;
+}
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+.list {
+  padding: 25px;
+  background-color: var(--lightPrimary);
+}
+.action {
+  padding: 25px;
+  background-color: var(--input-color);
+}
 </style>
