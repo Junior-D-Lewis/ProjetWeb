@@ -7,7 +7,6 @@
 <script>
 module.exports = {
 
-
 }
 </script>
 
