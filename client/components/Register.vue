@@ -83,9 +83,9 @@
 <script>
 
 module.exports = {
-  component: {
+/*   component: {
     Register,
-  },
+  }, */
   data() {
     return {
       nom: "",
