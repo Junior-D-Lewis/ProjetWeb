@@ -1,17 +1,32 @@
 <template>
   <div id="focus">
-    <div class="cover"></div>
+    <div class="cover">
+      <img :src="search.url" alt="" />
+    </div>
     <div class="content">
-      <h1>Lrunt ratexcepturi, quae ea officiis. Eaque?</h1>
+      <h1>{{ search.title }}</h1>
       <div class="details">
         <div class="left">
-          <h3> Date : </h3>
-          <h3>Secteur :</h3>
-          <h3>Lieu :</h3>
+          <h3>
+            Date : <span>{{ search.date }}</span>
+          </h3>
+          <h3>
+            Secteur : <span>{{ search.secteur }}</span>
+          </h3>
+          <h3>
+            Lieu : <span>{{ search.location }}</span>
+          </h3>
         </div>
         <div class="right">
-          <h3>Durée :</h3>
-          <h3>Possibilité de recrutement :</h3>
+          <h3>
+            Places : <span>{{ search.lastPlaces }}</span> restantes
+          </h3>
+          <h3>
+            Durée : <span>{{ search.duree }}</span>
+          </h3>
+          <h3>
+            Possibilité de recrutement : <span>{{ search.offer }}</span>
+          </h3>
         </div>
       </div>
       <hr />
@@ -32,44 +47,118 @@
         </p>
       </div>
 
-      <button v-on:click="apply()">Apply to this event</button>
+      <button v-on:click="apply(search.id)">Apply to this event</button>
     </div>
   </div>
 </template>
 
 <script>
+const Card = window.httpVueLoader("../components/Card.vue");
+
 module.exports = {
-  component: {
-    Focus,
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      id: "",
+      tt: "",
+      datas: [
+        {
+          id: 1,
+          title: "Sale",
+          date: "12/23/21",
+          url: "../img/brand.png",
+          location: "France",
+          lastPlaces: "32",
+          duree: "2 heures",
+          secteur: "Informatique",
+          offer: "Yes",
+        },
+        {
+          id: 2,
+          title: "Aurel",
+          date: "12/23/21",
+          url: "../img/brand.png",
+          location: "CHoisy",
+          lastPlaces: "32",
+          duree: "2 heures",
+          secteur: "Télécoms",
+          offer: "Yes",
+        },
+        {
+          id: 3,
+          title: "wow",
+          date: "12/23/21",
+          url: "../img/brand.png",
+          location: "Hour",
+          lastPlaces: "32",
+          duree: "2 heures",
+          secteur: "Vente",
+          offer: "Yes",
+        },
+      ],
+    };
   },
   methods: {
-    apply: function()
-    {
-      /*
-        Backend to add to ..... 
+    apply: function(e) {
+      /* 
+        E is the id of the element who is clicked ...
+        Send to the dev Backend .... 
       */
+     console.log(e)
     }
-  }
+  },
+  computed: {
+    search: function () {
+      return this.datas.find((element) => element.id == this.$route.params.id);
+    },
+  },
+  watch: {
+    $route(to, from) {
+      /* console.log(this.id); */
+      this.id = this.$route.params.id;
+    },
+  },
+  created() {
+    this.id = this.$route.params.id;
+  },
 };
 </script>
 
 <style scoped>
-.cover {
-  height: 60vh;
-  width: 100%;
-  display: block;
-  background-image: url("../img/woman.jpg");
-  background-size: cover;
+@media (min-width: 699px) {
+  .cover img {
+    width: 100%;
+    height: 600px;
+  }
+  .content {
+    padding: 30px 0px;
+    width: 55%;
+    margin: auto;
+  }
+  .details {
+    padding: 20px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
-.content {
-  padding: 30px 0px;
-  width: 55%;
-  margin: auto;
+@media (max-width: 698px) {
+  .cover img {
+    width: 100%;
+    height: 500px;
+  }
+  .content {
+    text-align: center;
+    width: 96%;
+    margin: auto;
+  }
+  .details {
+    grid-template-columns: 1fr;
+  }
 }
-.details {
-  padding: 20px 0px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+span {
+  color: var(--primary);
 }
 hr {
   margin: 20px 0px;

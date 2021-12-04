@@ -7,22 +7,24 @@ const Card = window.httpVueLoader('../components/Card.vue')
 const Focus = window.httpVueLoader('../components/FocusEvent.vue')
 const mySpace = window.httpVueLoader('../components/mySpace.vue')
 const Bottom = window.httpVueLoader('../components/Bottom.vue')
+const NotFound = window.httpVueLoader('../components/NotFound.vue')
 
 const routes = [
   { path: '/', component: Auth },
   {
     path: '/home', component: Home,
-  },
-  {
-    path: '/home/:id',
-    component: Focus,
     children: [
-      { path: '', component: Focus }
+      {
+        path: ':id',
+        component: Focus,
+        /* props: true, */
+      }
     ]
   },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
-  { path: '/mySpace', component: mySpace }
+  { path: '/mySpace', component: mySpace },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ]
 
 const router = new VueRouter({
@@ -34,7 +36,7 @@ const app = new Vue({
   el: "#app",
   router,
   components: {
-    Card, Home, Auth, Login, Focus, mySpace, Bottom
+    Card, Home, Auth, Login, Focus, mySpace, Bottom, NotFound
   },
   data() {
     return {
