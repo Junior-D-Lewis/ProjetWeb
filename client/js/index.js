@@ -7,6 +7,7 @@ const Card = window.httpVueLoader('../components/Card.vue')
 const Focus = window.httpVueLoader('../components/FocusEvent.vue')
 const mySpace = window.httpVueLoader('../components/mySpace.vue')
 const Bottom = window.httpVueLoader('../components/Bottom.vue')
+const Admin = window.httpVueLoader('../components/Admin.vue')
 const NotFound = window.httpVueLoader('../components/NotFound.vue')
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/mySpace', component: mySpace },
+  { path: '/admin', component: Admin },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ]
 

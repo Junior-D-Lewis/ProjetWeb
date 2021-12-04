@@ -1,22 +1,30 @@
 <template>
-  <div id="myspace">
-    <div class="left">
-      <div>
-        <i class="fas fa-user fa-3x"></i>
-        <br /><br />
-        <h3>Name current user</h3>
+  <div>
+    <nav>
+      <div class="nav-content">
+        <i class="fas fa-user"></i>
+        <small> Name current user </small>
       </div>
-    </div>
-    <div class="right">
-      <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
-      <br />
-      <hr />
-      <br />
-      <div class="event">
-        <h3>Titre de l'évènement</h3>
-        <p>10/12/2021</p>
-        <p>54 Rue dedede Paris , France</p>
-        <button class="close">X</button>
+    </nav>
+    <div id="myspace">
+      <div class="left">
+        <div>
+          <i class="fas fa-user fa-3x"></i>
+          <br /><br />
+          <h3>Name current user</h3>
+        </div>
+      </div>
+      <div class="right">
+        <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="event">
+          <h3>Titre de l'évènement</h3>
+          <p>10/12/2021</p>
+          <p>54 Rue dedede Paris , France</p>
+          <button class="close">X</button>
+        </div>
       </div>
     </div>
   </div>
@@ -26,19 +34,30 @@
 module.exports = {
   data() {
     return {
-      nbrEvent: 0,
+      listEvents: []
     };
   },
   computed: {
-    /* Je vais verifier le tableau des elements 
-        Tableau contenant les leements que le current user a selectionné
-        Ensuite, agir sur le nbrEvent
-         */
+    nbrEvent: function() {
+      return this.listEvents.length
+    }
   },
 };
 </script>
 
 <style scoped>
+nav {
+  height: 60px;
+  background-color: var(--primary);
+  position: relative;
+  top: 0;
+}
+nav > .nav-content {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(-20px, -50%);
+}
 .event {
   border: 1px solid transparent;
   box-shadow: 0px 5px 10px #ccc;
