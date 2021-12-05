@@ -10,7 +10,6 @@
           <option disabled value="">Please select one</option>
           <option>Titre des eveneements</option>
           <option>B</option>
-          <option>C</option>
         </select>
       </div>
 

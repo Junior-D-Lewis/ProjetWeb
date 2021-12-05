@@ -30,7 +30,7 @@ const routes = [
     path: '/admin', component: Admin,
     children: [
       {
-        path: 'list',
+        path: ':list',
         component: List,
       },
       {
