@@ -46,10 +46,9 @@ module.exports = {
   methods: {
       suppr(id)
       {
-          console.log(id)
+        console.log(id)
       }
   }
-
 };
 </script>
 
