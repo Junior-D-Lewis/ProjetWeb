@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-content">
         <i class="fas fa-user"></i>
-        <small> Name current user </small>
+        <small> {{userData.prenom}} {{userData.nom}} </small>
       </div>
     </nav>
     <router-view></router-view>
@@ -33,6 +33,7 @@ module.exports = {
   },
   data() {
     return {
+      userData:{},
       datas: [
         {
           id: 1,
@@ -57,7 +58,7 @@ module.exports = {
           offer: "Yes",
         },
         {
-         id: 3,
+          id: 3,
           title: "wow",
           date: "12/23/21",
           url: "../img/brand.png",
@@ -70,16 +71,21 @@ module.exports = {
       ],
     };
   },
-  methods:{
-    getEvents:async function(){
-      const response= await axios.get("http://localhost:5000/events");
+  methods: {
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
       console.log(response.data);
       /* Tu vas integrer ca a this.datas quand tu seras pret */
-    }
+    },
+    getUserName: async function () {
+      const response = await axios.get("http://localhost:5000/login/who");
+      this.userData = response.data;
+    },
   },
-  created:function(){
+  created: function () {
     this.getEvents();
-  }
+    this.getUserName();
+  },
 };
 </script>
 

@@ -38,7 +38,6 @@ module.exports = {
     getUserName: async function () {
       const response= await axios.get("http://localhost:5000/login/who");
       this.userData=response.data;      
-      
     },
   },
   computed: {
