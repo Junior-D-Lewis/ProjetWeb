@@ -74,14 +74,22 @@ module.exports = {
       places: "",
       localisation: "",
       date: "",
-      datas: []
+      datas: [],
+      id:0
     };
   },
+  methods:{
+    modifyEvent:async function(){
+      const data={
+        
+      }
+      const response = await axios.put("http://localhost:5000/events/")
+    },
+    createEvent:async function(){
 
-  /* 
-    Tu utilise axios pour get les data
-    qu'on va mettre dans datas
-  */
+      const response = await axios.post("http://localhost:5000/events",);
+    }
+  }
 };
 </script>
 

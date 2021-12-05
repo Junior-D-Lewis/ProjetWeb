@@ -27,15 +27,17 @@ function eventRouter(pgClient) {
 
     router.put("/:id",async(req,res)=>{
         const body=req.body;
-        let query="UPDATE events SET ";
+        let query="UPDATE events SET";
         let tmp=false;/*Cette variable est utilisee pour ecrire une requete UPDATE dynamiquement en fonction des parametres en entreee*/
         for (let attr in body){
-            if(tmp){
-                query+=",";
-                tmp=true;
+            if(body[attr]!=null){
+                if(tmp){
+                    query+=",";
+                    tmp=true;
+                }
+                query+=` ${attr} = '${body[attr]}' `;
+    
             }
-            query+=` ${attr} = '${body[attr]}' `;
-
         }
         query+=" WHERE id = "+req.params.id;
         try {
