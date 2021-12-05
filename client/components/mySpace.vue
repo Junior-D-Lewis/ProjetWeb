@@ -18,7 +18,6 @@
         <p>10/12/2021</p>
         <p>54 Rue dedede Paris , France</p>
         <button class="close">X</button>
-
       </div>
     </div>
   </div>
@@ -31,7 +30,6 @@ module.exports = {
       nbrEvent: 0,
       listEvents: [],
       userData:{}
-
     };
   },
   methods: {
