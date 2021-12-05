@@ -8,26 +8,28 @@
         placeholder="Rechercher par nom ..."
       />
     </div>
-    <Card
-      v-for="event in filteredEvents"
-      v-bind:key="event.id"
-      :id="event.id"
-      :title="event.title"
-      :date="event.date"
-      :url="event.url"
-      :location="event.location"
-      :last-places="event.lastPlaces"
-      :offer="event.yes"
-    ></Card>
+    <div id="cardadmin">
+      <Card-admin
+        v-for="event in filteredEvents"
+        v-bind:key="event.id"
+        :id="event.id"
+        :title="event.title"
+        :date="event.date"
+        :url="event.url"
+        :location="event.location"
+        :last-places="event.lastPlaces"
+        :offer="event.yes"
+      ></Card-admin>
+    </div>
   </div>
 </template>
 
 <script>
-const Card = window.httpVueLoader("../components/Card.vue");
+const CardAdmin = window.httpVueLoader("../components/CardAdmin.vue");
 
 module.exports = {
   components: {
-    Card,
+    CardAdmin,
   },
   data() {
     return {
@@ -80,29 +82,32 @@ module.exports = {
 </script>
 
 <style scoped>
+#cardadmin
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 input {
-    padding: 15px;
-    width: 96%;
-    margin: auto;
-    outline: none;
-    border: 1px solid var(--border-color);
+  padding: 15px;
+  width: 96%;
+  margin: auto;
+  outline: none;
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
 }
-input:focus
-{
-    color: var(--first-color);
+input:focus {
+  color: var(--first-color);
   font-size: var(--small-font-size);
 }
 @media (min-width: 700px) {
-
-.top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+  .top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media (max-width: 699px) {
-.top {
-  grid-template-columns: 1fr;
-}
+  .top {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
