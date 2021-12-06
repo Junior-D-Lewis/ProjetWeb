@@ -28,7 +28,7 @@
           </p>
         </div>
         <br>
-        <button class="delete" v-on:click="suppr(id)"> Supprimer </button>
+        <button class="delete" v-on:click="deleteEvent(id)"> Supprimer </button>
       </div>
     </div>
 
@@ -44,10 +44,10 @@ module.exports = {
     };
   },
   methods: {
-      suppr(id)
-      {
-        console.log(id)
-      }
+      deleteEvent:async function(id){
+      const response = await axios.delete(`http://localhost:5000/events/${this.id}`);
+    }
+      
   }
 };
 </script>

@@ -19,9 +19,10 @@ function eventRouter(pgClient) {
     router.post("/",async(req,res)=>{
         const body=req.body;
         const result= await pgClient.query({
-            text:"INSERT INTO events(nom,description,image,available_seats,localisation) VALUES($1,$2,$3,$4,$5)",
-            values:[body.nom,body,description,body.image,body.available_seats,body.localisation]
+            text:"INSERT INTO events(title,description,image,available_seats,localisation) VALUES($1,$2,$3,$4,$5)",
+            values:[body.title,body.description,body.image,body.available_seats,body.localisation]
         });
+        res.status(200).send("Added");
         return ;
     });
 
@@ -30,7 +31,7 @@ function eventRouter(pgClient) {
         let query="UPDATE events SET";
         let tmp=false;/*Cette variable est utilisee pour ecrire une requete UPDATE dynamiquement en fonction des parametres en entreee*/
         for (let attr in body){
-            if(body[attr]!=null){
+            if(body[attr]!=null || body[attr]!=""){
                 if(tmp){
                     query+=",";
                     tmp=true;

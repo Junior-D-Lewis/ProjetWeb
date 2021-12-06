@@ -7,9 +7,10 @@
       <p>Slectionner ce champ pour modifier un évènememnt</p>
       <div class="form__div">
         <select class="form__input" v-model="selected">
-          <option disabled value="">Please select one</option>
-          <option>Titre des eveneements</option>
-          <option>B</option>
+          <option value="">Ajouter un événement</option>
+          <option v-for="event in datas" :key="event.id">
+            {{ event.title }}
+          </option>
         </select>
       </div>
 
@@ -47,7 +48,7 @@
 
       <div class="form__div">
         <input
-          type="password"
+          type="text"
           class="form__input"
           placeholder=" "
           v-model="localisation"
@@ -77,12 +78,12 @@ module.exports = {
       localisation: "",
       date: "",
       url: "",
-      /* Contient tous les evenements de la base de données */
       datas: [],
     };
   },
   methods: {
     addEvent: async function () {
+      
       const data = {
         title: this.title,
         description: this.description,
@@ -91,6 +92,7 @@ module.exports = {
         localisation: this.localisation,
       };
       const response = await axios.post("http://localhost:5000/events", data);
+      console.log(response);
     },
     modifyEvent: async function () {
       const event_id = this.datas.find((ev) => ev.title == this.nom).id;
@@ -103,14 +105,19 @@ module.exports = {
         localisation: this.localisation,
       };
 
-      const response = await axios.put(`http://localhost:5000/events/${event_id}`, data);
+      const response = await axios.put(`http://localhost:5000/events/${event_id}`,data);
     },
     getEvents: async function () {
       const response = await axios.get("http://localhost:5000/events");
+      this.datas = response.data;
     },
+  },
+  created: async function () {
+    this.getEvents();
   },
   computed: {
     buttonValue: function () {
+      console.log(this.selected);
       if (this.selected === "") {
         return "Ajouter cet évènement";
       } else {
@@ -119,9 +126,9 @@ module.exports = {
     },
     handleSubmit: function () {
       if (this.selected === "") {
-        return this.addEvent();
+        this.addEvent();
       } else {
-        return this.modifyEvent();
+        this.modifyEvent();
       }
     },
   },

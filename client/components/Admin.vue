@@ -22,14 +22,6 @@ module.exports = {
     return {};
   },
   methods: {
-    getEvents: async function () {
-      const response = await axios.get("http://localhost:5000/events");
-      console.log(response.data);
-      /* Tu vas integrer ca a this.datas quand tu seras pret */
-    },
-  },
-  created: function () {
-    this.getEvents();
   },
 };
 </script>
