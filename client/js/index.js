@@ -10,6 +10,7 @@ const Bottom = window.httpVueLoader('../components/Bottom.vue')
 const Admin = window.httpVueLoader('../components/Admin.vue')
 const List = window.httpVueLoader('../components/List.vue')
 const Actions = window.httpVueLoader('../components/Actions.vue')
+const Deconnexion = window.httpVueLoader('../components/Deconnexion.vue')
 const NotFound = window.httpVueLoader('../components/NotFound.vue')
 
 const routes = [
@@ -40,6 +41,7 @@ const routes = [
       
     ]
   },
+  { path: '/deconnexion', component: Deconnexion },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ]
 
@@ -52,7 +54,7 @@ const app = new Vue({
   el: "#app",
   router,
   components: {
-    Card, Home, Auth, Login, Focus, mySpace, Bottom, NotFound, List, Actions
+    Card, Home, Auth, Login, Focus, mySpace, Bottom, NotFound, List, Actions, Deconnexion
   },
   data() {
     return {
@@ -61,7 +63,8 @@ const app = new Vue({
   },
   watch: {
     '$route'(to, from) {
-      if (to.path === '/home' || to.path[1] + to.path[2] + to.path[3] + to.path[4] === "home") {
+      /* console.log(to.path) */
+      if (to.path === '/home' || to.path[1] + to.path[2] + to.path[3] + to.path[4] === "home" || to.path === "/mySpace") {
         this.trueRoute = true
       }
       else {

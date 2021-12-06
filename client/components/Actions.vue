@@ -141,6 +141,7 @@ module.exports = {
         this.localisation = currentEvent.localisation;
         this.date = currentEvent.from;
 
+
         return "Modifier cet évènement";
       }
     },
@@ -162,12 +163,22 @@ module.exports = {
   align-items: center;
   padding: 50px 0px;
 }
-.form {
-  width: 40%;
-  margin: auto;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+
+@media (min-width: 699px) {
+  .form {
+    width: 40%;
+    margin: auto;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+  }
+}
+@media (max-width: 699px) {
+  .form {
+    width: 90%;
+    margin: auto;
+
+  }
 }
 .form__title {
   font-weight: 400;

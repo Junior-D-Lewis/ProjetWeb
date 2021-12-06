@@ -9,7 +9,7 @@
       />
     </div>
     <div id="cardadmin">
-      <Card-admin
+      <Card-admin 
         v-for="event in filteredEvents"
         v-bind:key="event.id"
         :id="event.id"

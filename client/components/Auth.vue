@@ -91,7 +91,7 @@ header {
   background-image: url("../img/cover.jpg");
   background-size: cover;
   background-blend-mode: soft-light;
-  background-color: var(--primary);
+  background-color:rgba(0, 0, 0, 0.818);
   display: flex;
   flex-direction: row;
   align-items: center;

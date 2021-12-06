@@ -8,7 +8,6 @@
       </div>
     </div>
     <div class="right">
-      Name current user
       <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
       <br />
       <hr />
