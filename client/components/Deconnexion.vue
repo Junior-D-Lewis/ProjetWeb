@@ -7,6 +7,12 @@
 <script>
 module.exports = {
   created() {
+      
+    /*
+        Aurelien ..
+        Tu poses le bail pour fermer la session actuelle ... 
+    */
+
     router.push({ path: "/" });
   },
 };
