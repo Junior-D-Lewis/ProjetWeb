@@ -153,7 +153,7 @@ module.exports = {
         this.setSuccessFor(small, "Strong Password");
         return true;
       } else {
-        this.setErrorFor(small, "Error");
+        this.setErrorFor(small, "01 maj, 01 min, 01 caractere, 01 chiffre");
         return false;
       }
     },

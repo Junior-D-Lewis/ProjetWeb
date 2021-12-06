@@ -30,11 +30,11 @@ const routes = [
     path: '/admin', component: Admin,
     children: [
       {
-        path: ':list',
+        path: 'list',
         component: List,
       },
       {
-        path: ':actions',
+        path: 'actions',
         component: Actions,
       },
       
@@ -61,7 +61,7 @@ const app = new Vue({
   },
   watch: {
     '$route'(to, from) {
-      if (to.path === '/home' || to.path[1] + to.path[2] + to.path[3] + to.path[4] === "home") {
+      if (to.path === '/home' || to.path[1] + to.path[2] + to.path[3] + to.path[4] === "home" || to.path === "/mySpace") {
         this.trueRoute = true
       }
       else {
