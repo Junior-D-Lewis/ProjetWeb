@@ -26,7 +26,7 @@
           </p>
         </div>
         <br>
-        <router-link :to="`/home/${id}`"> En savoir plus </router-link>
+        <router-link class="knowMore" :to="`/home/${id}`"> En savoir plus </router-link>
       </div>
     </div>
   </div>
@@ -77,5 +77,30 @@ module.exports = {
 .infos img {
   width: 30px;
   margin: 2px 25px;
+}
+a {
+  color: var(--first-color);
+  text-decoration: none;
+  font-weight: bold;
+  
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: var(--first-color);
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
 }
 </style>
