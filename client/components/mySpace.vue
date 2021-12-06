@@ -12,11 +12,12 @@
       <br />
       <hr />
       <br />
-      <div class="event">
-        <h3>Titre de l'évènement</h3>
+      <div class="event" v-for="event in listEvents" :key="event.id">
+        <h3>{{event.title}}</h3>
         <p>10/12/2021</p>
-        <p>54 Rue dedede Paris , France</p>
-        <button class="close">X</button>
+        <p>{{event.localisation}}</p>
+        <a class="qrCode" href="http://localhost:5000/participation/QrCode/0">QrCode</a>
+        <button class="close" v-on:click="unsubscribing(event.id)">X</button>
       </div>
     </div>
   </div>
@@ -36,6 +37,19 @@ module.exports = {
       const response= await axios.get("http://localhost:5000/login/who");
       this.userData=response.data;      
     },
+    getSubscribedEvents:async function(){
+      const response=await axios.get("http://localhost:5000/participation/user");
+      this.listEvents=response.data;
+      console.log(this.listEvents);
+    },
+    unsubscribing:async function(id){
+      const response=await axios.delete(`http://localhost:5000/participation/event/${id}`);
+
+      /*  RELOAD BG */
+    },
+    getQrCode:async function(id){
+      const response=await axios.get(`http://localhost:5000/participation/QrCode/${id}`);
+    }
   },
   computed: {
     nbrEvent: function () {
@@ -45,6 +59,7 @@ module.exports = {
   },
   created:function(){
     this.getUserName();
+    this.getSubscribedEvents();
   }
 };
 </script>
@@ -78,6 +93,9 @@ button {
   color: red;
   font-weight: bold;
   cursor: pointer;
+}
+.qrCode{
+  margin:10px;  
 }
 @media (min-width: 700px) {
   #myspace {

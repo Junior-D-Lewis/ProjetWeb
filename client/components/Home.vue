@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-content">
         <i class="fas fa-user"></i>
-        <small> {{userData.prenom}} {{userData.nom}} </small>
+        <small> {{ userData.prenom }} {{ userData.nom }} </small>
       </div>
     </nav>
     <router-view></router-view>
@@ -14,10 +14,10 @@
         :key="data.id"
         :id="data.id"
         :title="data.title"
-        :date="data.date"
-        :url="data.url"
+        :date="data.from"
+        :url="data.image"
         :location="data.location"
-        :last-places="data.lastPlaces"
+        :last-places="data.available_seats"
         :offer="data.yes"
       ></Card>
     </div>
@@ -33,9 +33,9 @@ module.exports = {
   },
   data() {
     return {
-      userData:{},
+      userData: {},
       datas: [
-        {
+        ,/* {
           id: 1,
           title: "Sale",
           date: "12/23/21",
@@ -67,7 +67,7 @@ module.exports = {
           duree: "3 heures",
           secteur: "Vente",
           offer: "Yes",
-        },
+        } */
       ],
     };
   },
@@ -75,10 +75,14 @@ module.exports = {
     getEvents: async function () {
       const response = await axios.get("http://localhost:5000/events");
       console.log(response.data);
-      /* Tu vas integrer ca a this.datas quand tu seras pret */
+      this.datas = response.data;
     },
     getUserName: async function () {
       const response = await axios.get("http://localhost:5000/login/who");
+      if (response.status != 200) {
+        /* router.push({ path: "/login" }); */
+        /* JE SAIS PAS COMMENT FAIRE LE PUSH */
+      }
       this.userData = response.data;
     },
   },

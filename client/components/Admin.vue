@@ -22,7 +22,16 @@ module.exports = {
     return {};
   },
   methods: {
+    isAdmin:async function(){
+      const response= await axios.get("http://localhost:5000/login/isAdmin");
+      if(response.status!=200){
+        console.log("Not an admin");
+      }
+    }
   },
+  created:function(){
+    this.isAdmin();
+  }
 };
 </script>
 
