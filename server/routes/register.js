@@ -18,7 +18,7 @@ function registerRouter(pgClient) {
         } else {
             const hashed_password =await bcrypt.hash(body.password, 10);
             await pgClient.query({
-                text: 'INSERT INTO users (nom,prenom,mail,password) VALUES ($1,$2,$3,$4)',
+                text: 'INSERT INTO users (nom,prenom,mail,password,statut) VALUES ($1,$2,$3,$4,0)',
                 values: [body.nom, body.prenom, body.mail, hashed_password]
             });
             res.status(200).send("Compte cree");
