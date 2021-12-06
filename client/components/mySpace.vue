@@ -27,8 +27,8 @@
 module.exports = {
   data() {
     return {
-      nbrEvent: 0,
       listEvents: [],
+      
       userData:{}
     };
   },

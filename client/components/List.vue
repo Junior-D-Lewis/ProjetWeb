@@ -15,9 +15,9 @@
         :id="event.id"
         :title="event.title"
         :date="event.date"
-        :url="event.url"
-        :location="event.location"
-        :last-places="event.lastPlaces"
+        :url="event.image"
+        :location="event.localisation"
+        :last-places="event.available_seats"
         :offer="event.yes"
       ></Card-admin>
     </div>

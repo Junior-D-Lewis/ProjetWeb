@@ -83,7 +83,6 @@ module.exports = {
   },
   methods: {
     addEvent: async function () {
-      
       const data = {
         title: this.title,
         description: this.description,
@@ -95,17 +94,21 @@ module.exports = {
       console.log(response);
     },
     modifyEvent: async function () {
-      const event_id = this.datas.find((ev) => ev.title == this.nom).id;
+      const event_id = this.datas.find((ev) => ev.title == this.selected).id;
       console.log();
+
       const data = {
-        nom: this.title,
+        title: this.title,
         description: this.description,
         image: this.url,
         available_seats: this.places,
         localisation: this.localisation,
       };
 
-      const response = await axios.put(`http://localhost:5000/events/${event_id}`,data);
+      const response = await axios.put(
+        `http://localhost:5000/events/${event_id}`,
+        data
+      );
     },
     getEvents: async function () {
       const response = await axios.get("http://localhost:5000/events");
@@ -117,10 +120,27 @@ module.exports = {
   },
   computed: {
     buttonValue: function () {
-      console.log(this.selected);
       if (this.selected === "") {
-        return "Ajouter cet évènement";
+        this.title = "";
+        this.description = "";
+        this.url = "";
+        this.places = "";
+        this.localisation = "";
+        this.date = "";
+
+        return "Ajouter cet événement";
       } else {
+        const currentEvent = this.datas.find((ev) => {
+          return ev.title == this.selected;
+        });
+
+        this.title = currentEvent.title;
+        this.description = currentEvent.description;
+        this.url = currentEvent.image;
+        this.places = currentEvent.available_seats;
+        this.localisation = currentEvent.localisation;
+        this.date = currentEvent.from;
+
         return "Modifier cet évènement";
       }
     },

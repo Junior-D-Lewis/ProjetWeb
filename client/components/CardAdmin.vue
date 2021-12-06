@@ -4,7 +4,7 @@
 
     <div class="card">
       <div class="card-left">
-        <img :src="url" />
+        <img :src="url" />      
       </div>
       <div class="card-right">
         <h1>{{ title }}</h1>
@@ -46,6 +46,8 @@ module.exports = {
   methods: {
       deleteEvent:async function(id){
       const response = await axios.delete(`http://localhost:5000/events/${this.id}`);
+
+      /* RELOAD LA PAGE */
     }
       
   }
@@ -75,7 +77,7 @@ module.exports = {
   width: 100%;
   margin: auto;
   height: 100%;
-  max-height: 400px;
+  max-height: 300px;
 }
 .card-right {
   position: relative;

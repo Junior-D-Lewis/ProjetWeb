@@ -28,6 +28,11 @@ app.use('/login',loginRouter(pgClient));
 app.use('/users',userRouter(pgClient));
 app.use('/events',eventRouter(pgClient));
 app.use('/participation',participationRouter(pgClient));
-
+app.get('/deconnexion',(req,res)=>{
+    const name =req.session.user.name;
+    req.session.destroy();
+    console.log(`${name} vient de se deconnecter`);
+    res.status(200).send("Deconnecté");
+})
 
 module.exports=app;
