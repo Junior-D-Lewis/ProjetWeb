@@ -1,7 +1,7 @@
 <template>
   <div id="focus">
     <div class="cover">
-      <img :src="search.url" alt="" />
+      <img :src="search.image" alt="" />
     </div>
     <div class="content">
       <h1>{{ search.title }}</h1>
@@ -14,12 +14,12 @@
             Secteur : <span>{{ search.secteur }}</span>
           </h3>
           <h3>
-            Lieu : <span>{{ search.location }}</span>
+            Lieu : <span>{{ search.localisation }}</span>
           </h3>
         </div>
         <div class="right">
           <h3>
-            Places : <span>{{ search.lastPlaces }}</span> restantes
+            Places : <span>{{ search.available_seats }}</span> restantes
           </h3>
           <h3>
             Durée : <span>{{ search.duree }}</span>
@@ -31,19 +31,9 @@
       </div>
       <hr />
       <div class="decription">
-        <h3>lorzkjfnrn ozini zrn zen iezn rnz</h3>
+        
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-          maxime, reprehenderit voluptas alias quod et debitis consequuntur sunt
-          distinctio in a facere magnam aut excepturi nulla deleniti dicta autem
-          dolores!
-        </p>
-        <h3>lorzkjfnrn ozini zrn zen iezn rnz</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-          maxime, reprehenderit voluptas alias quod et debitis consequuntur sunt
-          distinctio in a facere magnam aut excepturi nulla deleniti dicta autem
-          dolores!
+          {{search.description}}
         </p>
       </div>
 
@@ -63,47 +53,20 @@ module.exports = {
     return {
       id: "",
       tt: "",
-      datas: [
-        {
-          id: 1,
-          title: "Sale",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "France",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Informatique",
-          offer: "Yes",
-        },
-        {
-          id: 2,
-          title: "Aurel",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "CHoisy",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Télécoms",
-          offer: "Yes",
-        },
-        {
-          id: 3,
-          title: "wow",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Hour",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Vente",
-          offer: "Yes",
-        },
-      ],
+      datas: [],
     };
   },
   methods: {
-    apply: function(e) {
-      const reponse =axios.post("http://localhost:5000/participation",{event_id:e});
-    }
+    apply: function (e) {
+      const reponse = axios.post("http://localhost:5000/participation", {
+        event_id: e,
+      });
+    },
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
+      console.log(response.data);
+      this.datas = response.data;
+    },
   },
   computed: {
     search: function () {
@@ -119,6 +82,7 @@ module.exports = {
   },
   created() {
     this.id = this.$route.params.id;
+    this.getEvents()
   },
 };
 </script>

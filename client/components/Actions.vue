@@ -7,9 +7,10 @@
       <p>Slectionner ce champ pour modifier un évènememnt</p>
       <div class="form__div">
         <select class="form__input" v-model="selected">
-          <option disabled value="">Please select one</option>
-          <option>Titre des eveneements</option>
-          <option>B</option>
+          <option value="">Ajouter un événement</option>
+          <option v-for="event in datas" :key="event.id">
+            {{ event.title }}
+          </option>
         </select>
       </div>
 
@@ -24,7 +25,8 @@
       </div>
 
       <div class="form__div">
-        <textarea class="form__input" placeholder=" " v-model="url"> </textarea>
+        <textarea class="form__input" placeholder=" " v-model="description">
+        </textarea>
 
         <label for="" class="form__label">Description</label>
       </div>
@@ -46,7 +48,7 @@
 
       <div class="form__div">
         <input
-          type="password"
+          type="text"
           class="form__input"
           placeholder=" "
           v-model="localisation"
@@ -69,36 +71,85 @@ module.exports = {
   data() {
     return {
       title: "",
+      description: "",
       url: "",
       selected: "",
       places: "",
       localisation: "",
       date: "",
       url: "",
-
-      /* Contient tous les evenements de la base de données */
       datas: [],
     };
   },
+  methods: {
+    addEvent: async function () {
+      const data = {
+        title: this.title,
+        description: this.description,
+        image: this.url,
+        available_seats: this.places,
+        localisation: this.localisation,
+      };
+      const response = await axios.post("http://localhost:5000/events", data);
+      console.log(response);
+    },
+    modifyEvent: async function () {
+      const event_id = this.datas.find((ev) => ev.title == this.selected).id;
+      console.log();
 
-  /* 
-    Tu utilise axios pour get les data
-    qu'on va mettre dans datas  ...
-  */
+      const data = {
+        title: this.title,
+        description: this.description,
+        image: this.url,
+        available_seats: this.places,
+        localisation: this.localisation,
+      };
 
+      const response = await axios.put(
+        `http://localhost:5000/events/${event_id}`,
+        data
+      );
+    },
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
+      this.datas = response.data;
+    },
+  },
+  created: async function () {
+    this.getEvents();
+  },
   computed: {
     buttonValue: function () {
       if (this.selected === "") {
-        return "Ajouter cet évènement";
+        this.title = "";
+        this.description = "";
+        this.url = "";
+        this.places = "";
+        this.localisation = "";
+        this.date = "";
+
+        return "Ajouter cet événement";
       } else {
+        const currentEvent = this.datas.find((ev) => {
+          return ev.title == this.selected;
+        });
+
+        this.title = currentEvent.title;
+        this.description = currentEvent.description;
+        this.url = currentEvent.image;
+        this.places = currentEvent.available_seats;
+        this.localisation = currentEvent.localisation;
+        this.date = currentEvent.from;
+
+
         return "Modifier cet évènement";
       }
     },
     handleSubmit: function () {
       if (this.selected === "") {
-        return this.addEvent();
+        this.addEvent();
       } else {
-        return this.handleEvent();
+        this.modifyEvent();
       }
     },
   },

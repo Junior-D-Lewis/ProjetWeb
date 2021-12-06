@@ -1,18 +1,17 @@
 <template>
   <div>
-    <h1>aegjv</h1>
   </div>
 </template>
 
 <script>
 module.exports = {
+  methods:{
+    deconnect:async function(){
+      const response=await axios.get("http://localhost:5000/deconnexion");    
+    }
+  },
   created() {
-      
-    /*
-        Aurelien ..
-        Tu poses le bail pour fermer la session actuelle ... 
-    */
-
+    this.deconnect();
     router.push({ path: "/" });
   },
 };
