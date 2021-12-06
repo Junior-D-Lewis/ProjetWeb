@@ -2,14 +2,14 @@
   <div id="actions">
     <h1>Faire des actions</h1>
 
-    <form v-on:submit.prevent="handleForm" class="form">
+    <form v-on:submit.prevent="handleSubmit" class="form">
       <!-- titre, description , image, places, localisation -->
       <p>Slectionner ce champ pour modifier un évènememnt</p>
       <div class="form__div">
-        <select class="form__input" v-model="handle">
-          <option value="">--- Ne rien selectionner ---</option>
-          <option value="">sljruo</option>
-          <option value="">jkazeoi</option>
+        <select class="form__input" v-model="selected">
+          <option disabled value="">Please select one</option>
+          <option>Titre des eveneements</option>
+          <option>B</option>
         </select>
       </div>
 
@@ -24,13 +24,14 @@
       </div>
 
       <div class="form__div">
-        <textarea class="form__input" placeholder=" " v-model="url"> </textarea>
+        <textarea class="form__input" placeholder=" " v-model="description">
+        </textarea>
 
         <label for="" class="form__label">Description</label>
       </div>
 
       <div class="form__div">
-        <input type="file" class="form__input" placeholder=" " />
+        <input type="text" class="form__input" placeholder=" " v-model="url" />
         <label for="" class="form__label">Image</label>
       </div>
 
@@ -59,7 +60,7 @@
         <label for="" class="form__label">Date de tenue</label>
       </div>
 
-      <input type="submit" class="form__button" value="Valider" />
+      <button type="submit" class="form__button">{{ buttonValue }}</button>
     </form>
   </div>
 </template>
@@ -69,32 +70,65 @@ module.exports = {
   data() {
     return {
       title: "",
+      description: "",
       url: "",
-      handle: "",
+      selected: "",
       places: "",
       localisation: "",
       date: "",
+      url: "",
+      /* Contient tous les evenements de la base de données */
       datas: [],
-      id:0
     };
   },
-  methods:{
-    modifyEvent:async function(){
-      const data={
-        
-      }
-      const response = await axios.put("http://localhost:5000/events/")
+  methods: {
+    addEvent: async function () {
+      const data = {
+        title: this.title,
+        description: this.description,
+        image: this.url,
+        available_seats: this.places,
+        localisation: this.localisation,
+      };
+      const response = await axios.post("http://localhost:5000/events", data);
     },
-    createEvent:async function(){
+    modifyEvent: async function () {
+      const event_id = this.datas.find((ev) => ev.title == this.nom).id;
+      console.log();
+      const data = {
+        nom: this.title,
+        description: this.description,
+        image: this.url,
+        available_seats: this.places,
+        localisation: this.localisation,
+      };
 
-      const response = await axios.post("http://localhost:5000/events",);
-    }
-  }
+      const response = await axios.put(`http://localhost:5000/events/${event_id}`, data);
+    },
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
+    },
+  },
+  computed: {
+    buttonValue: function () {
+      if (this.selected === "") {
+        return "Ajouter cet évènement";
+      } else {
+        return "Modifier cet évènement";
+      }
+    },
+    handleSubmit: function () {
+      if (this.selected === "") {
+        return this.addEvent();
+      } else {
+        return this.modifyEvent();
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 .l-form {
   display: flex;
   justify-content: center;
