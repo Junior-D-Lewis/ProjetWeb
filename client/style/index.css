@@ -157,10 +157,28 @@ body, button, input
   }
   
   .menu-wrap .menu > div > div > ul > li > a {
-    color: inherit;
+    text-transform: uppercase;
     text-decoration: none;
-    transition: color 0.4s ease;
+    letter-spacing: 0.15em;
+    color: #fff;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+
   }
-  .menu-wrap .menu > div > div > ul > li > a:hover {
-    color: var(--primary);
+  .menu-wrap .menu > div > div > ul > li > a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .menu-wrap .menu > div > div > ul > li > a:hover:after {
+    width: 100%; 
+    left: 0; 
   }
