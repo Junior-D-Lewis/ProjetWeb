@@ -8,7 +8,6 @@
       </div>
     </div>
     <div class="right">
-      Name current user
       <h2>Vous avez souscris à {{ nbrEvent }} évènement</h2>
       <br />
       <hr />
@@ -27,7 +26,6 @@
 module.exports = {
   data() {
     return {
-      nbrEvent: 0,
       listEvents: [],
       userData:{}
     };

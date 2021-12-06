@@ -89,21 +89,18 @@ module.exports = {
   computed: {
     buttonValue: function () {
       if (this.selected === "") {
-        return "Ajouter cet évènement"
-      }
-      else {
-        return "Modifier cet évènement"
+        return "Ajouter cet évènement";
+      } else {
+        return "Modifier cet évènement";
       }
     },
-    handleSubmit: function()
-    {
+    handleSubmit: function () {
       if (this.selected === "") {
-        return this.addEvent()
+        return this.addEvent();
+      } else {
+        return this.handleEvent();
       }
-      else {
-        return this.handleEvent()
-      }
-    }
+    },
   },
 };
 </script>
@@ -115,12 +112,22 @@ module.exports = {
   align-items: center;
   padding: 50px 0px;
 }
-.form {
-  width: 40%;
-  margin: auto;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+
+@media (min-width: 699px) {
+  .form {
+    width: 40%;
+    margin: auto;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+  }
+}
+@media (max-width: 699px) {
+  .form {
+    width: 90%;
+    margin: auto;
+
+  }
 }
 .form__title {
   font-weight: 400;
