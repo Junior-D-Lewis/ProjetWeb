@@ -112,13 +112,25 @@ module.exports = {
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.883);
 }
-.form {
-  width: 40%;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
-  background-color: #f8f8f8;
+
+@media (min-width: 699px) {
+  .form {
+    width: 40%;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+    background-color: #f8f8f8;
+  }
 }
+@media (max-width: 698px) {
+  .form {
+    width: 95%;
+    padding: 4rem 1rem;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+  }
+}
+
 .form__title {
   font-weight: 400;
   margin-bottom: 3rem;
