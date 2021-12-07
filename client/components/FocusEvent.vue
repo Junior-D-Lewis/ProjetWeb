@@ -10,9 +10,9 @@
           <h3>
             Date : <span>{{ search.date }}</span>
           </h3>
-          <h3>
+          <!-- <h3>
             Secteur : <span>{{ search.secteur }}</span>
-          </h3>
+          </h3> -->
           <h3>
             Lieu : <span>{{ search.localisation }}</span>
           </h3>
@@ -21,9 +21,9 @@
           <h3>
             Places : <span>{{ search.available_seats }}</span> restantes
           </h3>
-          <h3>
+          <!-- <h3>
             Durée : <span>{{ search.duree }}</span>
-          </h3>
+          </h3> -->
           <h3>
             Possibilité de recrutement : <span>{{ search.offer }}</span>
           </h3>

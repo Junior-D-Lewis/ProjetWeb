@@ -47,7 +47,7 @@ module.exports = {
       deleteEvent:async function(id){
       const response = await axios.delete(`http://localhost:5000/events/${this.id}`);
 
-      /* RELOAD LA PAGE */
+      this.getEvents();
     }
       
   }
