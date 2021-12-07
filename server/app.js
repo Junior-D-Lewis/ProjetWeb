@@ -11,7 +11,6 @@ const participationRouter=require("./routes/participation");
 const pgClient=require('./db_config/db');
 
 const app=express();
-
 app.use(express.json())
 app.use(session({ secret: 'grehjznejzkhgjrez', saveUninitialized: false, resave: false }))
 app.use(express.urlencoded({ extended: false }))
@@ -28,6 +27,10 @@ app.use('/login',loginRouter(pgClient));
 app.use('/users',userRouter(pgClient));
 app.use('/events',eventRouter(pgClient));
 app.use('/participation',participationRouter(pgClient));
-
+app.get('/deconnexion',(req,res)=>{
+    console.log(`${req.session.user.nom} vient de se deconnecter`);
+    req.session.destroy();
+    res.status(200).send("Deconnecté");
+})
 
 module.exports=app;

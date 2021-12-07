@@ -15,9 +15,9 @@
         :id="event.id"
         :title="event.title"
         :date="event.date"
-        :url="event.url"
-        :location="event.location"
-        :last-places="event.lastPlaces"
+        :url="event.image"
+        :location="event.localisation"
+        :last-places="event.available_seats"
         :offer="event.yes"
       ></Card-admin>
     </div>
@@ -33,43 +33,16 @@ module.exports = {
   },
   data() {
     return {
-      datas: [
-        {
-          id: 1,
-          title: "Sale",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "France",
-          lastPlaces: "32",
-          duree: "1.60 heures",
-          secteur: "Informatique",
-          offer: "Yes",
-        },
-        {
-          id: 2,
-          title: "Aurel",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Choisy",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Télécoms",
-          offer: "Yes",
-        },
-        {
-          id: 3,
-          title: "wow",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Hour",
-          lastPlaces: "32",
-          duree: "3 heures",
-          secteur: "Vente",
-          offer: "Yes",
-        },
-      ],
+      datas: [],
       inputFilter: "",
     };
+  },
+  methods:{
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
+      console.log(response.data);
+      this.datas=response.data;
+    }
   },
   computed: {
     filteredEvents() {
@@ -78,6 +51,9 @@ module.exports = {
       });
     },
   },
+  created:async function(){
+    this.getEvents();
+  }
 };
 </script>
 
