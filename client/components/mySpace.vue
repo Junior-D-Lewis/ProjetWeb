@@ -17,7 +17,7 @@
         <p>10/12/2021</p>
         <p>{{event.localisation}}</p>
         <a class="qrCode" href="http://localhost:5000/participation/QrCode/0">QrCode</a>
-        <button class="close" v-on:click="unsubscribing(event.id)">X</button>
+        <button class="close" v-on:click="unsubscribing(event.id)"> X </button>
       </div>
     </div>
   </div>
@@ -40,12 +40,10 @@ module.exports = {
     getSubscribedEvents:async function(){
       const response=await axios.get("http://localhost:5000/participation/user");
       this.listEvents=response.data;
-      console.log(this.listEvents);
     },
     unsubscribing:async function(id){
       const response=await axios.delete(`http://localhost:5000/participation/event/${id}`);
-
-      /*  RELOAD BG */
+      this.getSubscribedEvents();
     },
     getQrCode:async function(id){
       const response=await axios.get(`http://localhost:5000/participation/QrCode/${id}`);

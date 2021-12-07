@@ -16,7 +16,7 @@
         :title="data.title"
         :date="data.from"
         :url="data.image"
-        :location="data.location"
+        :location="data.localisation"
         :last-places="data.available_seats"
         :offer="data.yes"
       ></Card>
@@ -34,48 +34,15 @@ module.exports = {
   data() {
     return {
       userData: {},
-      datas: [
-        ,/* {
-          id: 1,
-          title: "Sale",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "France",
-          lastPlaces: "32",
-          duree: "1.60 heures",
-          secteur: "Informatique",
-          offer: "Yes",
-        },
-        {
-          id: 2,
-          title: "Aurel",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Choisy",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Télécoms",
-          offer: "Yes",
-        },
-        {
-          id: 3,
-          title: "wow",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Hour",
-          lastPlaces: "32",
-          duree: "3 heures",
-          secteur: "Vente",
-          offer: "Yes",
-        } */
-      ],
+      datas: [],
     };
   },
   methods: {
     getEvents: async function () {
       const response = await axios.get("http://localhost:5000/events");
-      console.log(response.data);
+      /* console.log(response.data); */
       this.datas = response.data;
+      /* console.log(this.datas) */
     },
     getUserName: async function () {
       const response = await axios.get("http://localhost:5000/login/who");
@@ -89,6 +56,19 @@ module.exports = {
   created: function () {
     this.getEvents();
     this.getUserName();
+  },
+  mounted: function () {
+    router.beforeEach((to, from, next) => {
+      if (localStorage.getItem("login")) {
+        next()
+      } else {
+        if(from.path === "/deconnexion")
+        {
+          console.log("Il veut se deconnecter")
+          next()
+        }
+      }
+    });
   },
 };
 </script>

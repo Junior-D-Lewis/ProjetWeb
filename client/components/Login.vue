@@ -28,6 +28,8 @@
       </div>
 
       <input type="submit" class="form__button" value="Login" />
+
+      <small id="errorlogin"></small>
     </form>
   </div>
 </template>
@@ -71,15 +73,15 @@ module.exports = {
     async handleForm() {
       if (this.handleEmail() === true) {
         let data = { email: this.email, password: this.password };
-        console.log(axios);
+        /* console.log(axios); */
 
         const response = await axios.post("http://localhost:5000/login", data);
         console.log(response);
 
         if (response.status == 200)
+        {
+          localStorage.setItem('login', 'yes');
           router.push({ path: "/home", params: data });
-        else {
-          /* window.alert("Authentication a echouee"); */
         }
       } else {
         return;

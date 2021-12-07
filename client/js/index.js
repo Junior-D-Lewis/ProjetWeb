@@ -22,7 +22,10 @@ const routes = [
         path: ':id',
         component: Focus,
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
@@ -38,7 +41,7 @@ const routes = [
         path: 'actions',
         component: Actions,
       },
-      
+
     ]
   },
   { path: '/deconnexion', component: Deconnexion },
