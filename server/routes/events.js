@@ -18,9 +18,11 @@ function eventRouter(pgClient) {
 
     router.post("/", async (req, res) => {
         const body = req.body;
+        const now=(new Date().toLocaleString()).split(",")[0];
+        console.log(now);
         const result = await pgClient.query({
-            text: "INSERT INTO events(title,description,image,available_seats,localisation) VALUES($1,$2,$3,$4,$5)",
-            values: [body.title, body.description, body.image, body.available_seats, body.localisation]
+            text: "INSERT INTO events(title,description,image,available_seats,localisation,from) VALUES($1,$2,$3,$4,$5,to_timestamp($6 / 1000.0))",
+            values: [body.title, body.description, body.image, body.available_seats, body.localisation,Date.now()]
         });
         res.status(200).send("Added");
 
