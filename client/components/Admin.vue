@@ -21,17 +21,11 @@ module.exports = {
   data() {
     return {};
   },
-  methods: {
-    isAdmin:async function(){
-      const response= await axios.get("http://localhost:5000/login/isAdmin");
-      if(response.status!=200){
-        console.log("Not an admin");
-      }
+  created: function () {
+    if (localStorage.getItem("isAdmin") != "yes") {
+      router.push({ path: "/login", params: {} });
     }
   },
-  created:function(){
-    this.isAdmin();
-  }
 };
 </script>
 

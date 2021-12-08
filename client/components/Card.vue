@@ -10,7 +10,7 @@
         <div class="infos">
           <p>
             <img src="../img/calendar-date.png" alt="" />
-            {{ date }}
+            {{ renderDate }}
           </p>
           <p>
             <img src="../img/location.png" alt="" />
@@ -51,6 +51,10 @@ module.exports = {
         console.log("chaud")
         return false;
       }
+    },
+    renderDate: function() {
+      const theDate = this.date.split("T")
+      return theDate[0]
     }
   },
 

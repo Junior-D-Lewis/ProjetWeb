@@ -61,6 +61,15 @@
         <label for="" class="form__label">Date de tenue</label>
       </div>
 
+      <div class="form__div">
+        <input
+          type="checkbox"
+          class="form__input"
+          placeholder=" "
+          v-model="offer"
+        />
+        <label for="" class="form__label">Possibilités d'offres</label>
+      </div>
       <button type="submit" class="form__button">{{ buttonValue }}</button>
     </form>
   </div>
@@ -76,6 +85,7 @@ module.exports = {
       selected: "",
       places: "",
       localisation: "",
+      offer: false,
       date: "",
       url: "",
       datas: [],
@@ -88,7 +98,9 @@ module.exports = {
         description: this.description,
         image: this.url,
         available_seats: this.places,
+        date: this.date,
         localisation: this.localisation,
+        offer: this.offer
       };
       const response = await axios.post("http://localhost:5000/events", data);
       console.log(response);
@@ -103,6 +115,7 @@ module.exports = {
         image: this.url,
         available_seats: this.places,
         localisation: this.localisation,
+        date:this.date.split("T")[0]
       };
 
       const response = await axios.put(
@@ -139,7 +152,7 @@ module.exports = {
         this.url = currentEvent.image;
         this.places = currentEvent.available_seats;
         this.localisation = currentEvent.localisation;
-        this.date = currentEvent.from;
+        this.date = currentEvent.date.split("T")[0];
 
 
         return "Modifier cet évènement";

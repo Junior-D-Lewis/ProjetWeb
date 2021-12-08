@@ -18,7 +18,7 @@
         :url="event.image"
         :location="event.localisation"
         :last-places="event.available_seats"
-        :offer="event.yes"
+        :offer="event.offer"
       ></Card-admin>
     </div>
   </div>
