@@ -71,7 +71,6 @@ function participationRouter(pgClient) {
 
     router.post("/", async (req, res) => {
         const body = req.body;
-        console.log(req.session.user.id + "  " + body.event_id);
 
         if (req.session.user.id == null)
             res.status(400).send("Vous devez vous authentifier !!");

@@ -14,11 +14,11 @@
         :key="data.id"
         :id="data.id"
         :title="data.title"
-        :date="data.from"
+        :date="data.date"
         :url="data.image"
         :location="data.localisation"
         :last-places="data.available_seats"
-        :offer="data.yes"
+        :offer="data.offer"
       ></Card>
     </div>
   </div>
@@ -54,6 +54,9 @@ module.exports = {
     },
   },
   created: function () {
+    if (localStorage.getItem("login") != "yes") {
+      router.push({ path: "/login", params: {} });
+    }
     this.getEvents();
     this.getUserName();
   },

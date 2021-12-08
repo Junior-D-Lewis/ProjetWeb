@@ -12,7 +12,6 @@ function loginRouter(pgClient) {
             values: [body.email]
         });
         const data = result.rows[0];
-        console.log();
         if (data) {
             const result2 = await bcrypt.compare(body.password, data.password)
             if (result2) {
@@ -22,7 +21,10 @@ function loginRouter(pgClient) {
                     prenom: data.prenom,
                     isAdmin: data.statut
                 };
-                res.status(200).json({ nom: data.nom, prenom: data.prenom });
+                if(data.statut)
+                    res.status(200).json({ nom: data.nom, prenom: data.prenom ,isAdmin:true});
+                else
+                    res.status(200).json({ nom: data.nom, prenom: data.prenom });
             }
             else
                 res.status(401).send("Authentification echouee");

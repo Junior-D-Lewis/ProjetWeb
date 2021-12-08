@@ -81,6 +81,10 @@ module.exports = {
         if (response.status == 200)
         {
           localStorage.setItem('login', 'yes');
+          if(response.data.isAdmin){
+            localStorage.setItem('isAdmin', 'yes')
+          }
+            
           router.push({ path: "/home", params: data });
         }
       } else {
