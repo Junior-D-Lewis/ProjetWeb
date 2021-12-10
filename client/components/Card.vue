@@ -10,7 +10,7 @@
         <div class="infos">
           <p>
             <img src="../img/calendar-date.png" alt="" />
-            {{ date }}
+            {{ renderDate }}
           </p>
           <p>
             <img src="../img/location.png" alt="" />
@@ -26,7 +26,7 @@
           </p>
         </div>
         <br>
-        <router-link class="knowMore" :to="`/home/${id}`"> En savoir plus </router-link>
+        <router-link v-if="connected" :to="`/home/${id}`"> En savoir plus </router-link>
       </div>
     </div>
   </div>
@@ -37,7 +37,25 @@ module.exports = {
   props: ["id", "title", "url", "date", "location", "lastPlaces", "offer"],
   data() {
     return {
+      
     };
+  },
+  computed: {
+    connected: function() {
+      if(localStorage.getItem('login') === "yes")
+      {
+        return true;
+      }
+      else
+      {
+        console.log("chaud")
+        return false;
+      }
+    },
+    renderDate: function() {
+      const theDate = this.date.split("T")
+      return theDate[0]
+    }
   },
 
 };
@@ -65,7 +83,7 @@ module.exports = {
   width: 100%;
   margin: auto;
   height: 100%;
-  max-height: 400px;
+  max-height: 300px;
 }
 .card-right {
   position: relative;

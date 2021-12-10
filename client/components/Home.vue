@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-content">
         <i class="fas fa-user"></i>
-        <small> Name current user </small>
+        <small> {{ userData.prenom }} {{ userData.nom }} </small>
       </div>
     </nav>
     <router-view></router-view>
@@ -15,10 +15,10 @@
         :id="data.id"
         :title="data.title"
         :date="data.date"
-        :url="data.url"
-        :location="data.location"
-        :last-places="data.lastPlaces"
-        :offer="data.yes"
+        :url="data.image"
+        :location="data.localisation"
+        :last-places="data.available_seats"
+        :offer="data.offer"
       ></Card>
     </div>
   </div>
@@ -33,53 +33,46 @@ module.exports = {
   },
   data() {
     return {
-      datas: [
-        {
-          id: 1,
-          title: "Sale",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "France",
-          lastPlaces: "32",
-          duree: "1.60 heures",
-          secteur: "Informatique",
-          offer: "Yes",
-        },
-        {
-          id: 2,
-          title: "Aurel",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Choisy",
-          lastPlaces: "32",
-          duree: "2 heures",
-          secteur: "Télécoms",
-          offer: "Yes",
-        },
-        {
-         id: 3,
-          title: "wow",
-          date: "12/23/21",
-          url: "../img/brand.png",
-          location: "Hour",
-          lastPlaces: "32",
-          duree: "3 heures",
-          secteur: "Vente",
-          offer: "Yes",
-        },
-      ],
+      userData: {},
+      datas: [],
     };
   },
-  methods:{
-    getEvents:async function(){
-      const response= await axios.get("http://localhost:5000/events");
-      console.log(response.data);
-      /* Tu vas integrer ca a this.datas quand tu seras pret */
-    }
+  methods: {
+    getEvents: async function () {
+      const response = await axios.get("http://localhost:5000/events");
+      /* console.log(response.data); */
+      this.datas = response.data;
+      /* console.log(this.datas) */
+    },
+    getUserName: async function () {
+      const response = await axios.get("http://localhost:5000/login/who");
+      if (response.status != 200) {
+        /* router.push({ path: "/login" }); */
+        /* JE SAIS PAS COMMENT FAIRE LE PUSH */
+      }
+      this.userData = response.data;
+    },
   },
-  created:function(){
+  created: function () {
+    if (localStorage.getItem("login") != "yes") {
+      router.push({ path: "/login", params: {} });
+    }
     this.getEvents();
-  }
+    this.getUserName();
+  },
+  mounted: function () {
+    router.beforeEach((to, from, next) => {
+      if (localStorage.getItem("login")) {
+        next()
+      } else {
+        if(from.path === "/deconnexion")
+        {
+          console.log("Il veut se deconnecter")
+          next()
+        }
+      }
+    });
+  },
 };
 </script>
 

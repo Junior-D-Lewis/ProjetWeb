@@ -33,23 +33,33 @@ function participationRouter(pgClient) {
 
     });
 
-    router.get("/user/:id", async (req, res) => {
+    router.get("/user", async (req, res) => {
 
         const result = await pgClient.query({
-            text: 'SELECT * FROM participations WHERE user_id=$1',
-            values: [req.params.id]
+            text: 'SELECT event_id FROM participations WHERE user_id=$1',
+            values: [req.session.user.id]
         });
         if (result.rows == null)
             res.status(404).send("Not found");
-        else
-            res.status(200).json(result.rows);
+        else {
+            let events=[];
+            for(ev of result.rows){
+                let result_2 = await pgClient.query({
+                    text: 'SELECT * FROM events WHERE id=$1',
+                    values: [ev.event_id]
+                });
+                events.push(result_2.rows[0]);
+            }
+            res.status(200).json(events);
+        }
+
 
         return;
 
     });
     router.get("/QrCode/:event_id", async (req, res) => {
-            
-        if (req.session.user== null)
+
+        if (req.session.user == null)
             res.status(401).send("Authentification requise");
         /* En fonction de lidentifiant du client et de l'id de l'event on lui envoie le fichier pdf ou se trouve son QrCode*/
         else
@@ -61,7 +71,6 @@ function participationRouter(pgClient) {
 
     router.post("/", async (req, res) => {
         const body = req.body;
-        console.log(req.session.user.id+"  "+ body.event_id);
 
         if (req.session.user.id == null)
             res.status(400).send("Vous devez vous authentifier !!");
@@ -81,7 +90,7 @@ function participationRouter(pgClient) {
                 res.status(400).send("Toutes les places sont prises");
             }
             else {
-                console.log(req.session.user.id+"  "+ body.event_id);
+                console.log(req.session.user.id + "  " + body.event_id);
                 const result_3 = await pgClient.query({
                     text: "INSERT INTO participations(user_id,event_id) VALUES($1,$2)",
                     values: [req.session.user.id, body.event_id]
@@ -90,7 +99,7 @@ function participationRouter(pgClient) {
 
                 const result_4 = await pgClient.query({
                     text: "UPDATE events SET available_seats=$1 WHERE id=$2",
-                    values: [result_2.rows[0].available_seats-1, body.event_id]
+                    values: [result_2.rows[0].available_seats - 1, body.event_id]
                 });
                 res.status(200).send("OK");
             }
@@ -105,7 +114,7 @@ function participationRouter(pgClient) {
             res.status(400).send("Vous devez vous authentifier !!");
         else {
             const result = await pgClient.query({
-                text: " DELETE FROM participation WHERE event_id=$1 and user_id=$2",
+                text: " DELETE FROM participations WHERE event_id=$1 and user_id=$2",
                 values: [req.params.id, req.session.user.id]
             });
 
@@ -114,9 +123,9 @@ function participationRouter(pgClient) {
                 values: [req.params.id]
             });
 
-            const result_3= await pgClient.query({
+            const result_3 = await pgClient.query({
                 text: "UPDATE events SET available_seats=$1 WHERE id=$2",
-                values: [result_2.rows[0].available_seats+1,req.params.id]
+                values: [result_2.rows[0].available_seats + 1, req.params.id]
             });
         }
         res.status(200).send("Deleted");

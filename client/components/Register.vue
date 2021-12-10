@@ -1,7 +1,7 @@
 <template>
   <div class="l-form">
     <form v-on:submit.prevent="handleForm" class="form">
-      <h1 class="form__title">Créer un compte </h1>
+      <h1 class="form__title">Créer un compte</h1>
 
       <div class="form__div">
         <input
@@ -81,9 +81,8 @@
 </template>
 
 <script>
-
 module.exports = {
-/*   component: {
+  /*   component: {
     Register,
   }, */
   data() {
@@ -183,11 +182,18 @@ module.exports = {
           password: this.mdp,
         };
 
-        axios.post("http://localhost:5000/register",data);
+        axios.post("http://localhost:5000/register", data);
 
         console.log(data);
         alert("Votre compte a été bien crée");
-        this.$router.push("/");
+        router.push({ path: "/home", params: data });
+
+
+        /*
+          Reste à savoir si ça bosse vraiement
+        */
+
+
       } else {
         alert("Erreur détectée");
       }
@@ -214,18 +220,27 @@ module.exports = {
   justify-content: center;
   align-items: center;
   padding: 50px 0px;
-  background-image: url('../img/cover.jpg');
+  background-image: url("../img/cover.jpg");
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.883);
 }
-.form {
-  width: 40%;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
-  background-color: #f8f8f8;
- 
+@media (min-width: 699px) {
+  .form {
+    width: 40%;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+    background-color: #f8f8f8;
+  }
+}
+@media (max-width: 698px) {
+  .form {
+    width: 95%;
+    padding: 4rem 1rem;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+  }
 }
 .form__title {
   font-weight: 400;

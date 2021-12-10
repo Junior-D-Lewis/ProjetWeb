@@ -4,7 +4,7 @@
       <div>
         <i class="fas fa-user fa-3x"></i>
         <br /><br />
-        <h3>{{userData.prenom}} {{userData.nom}}</h3>
+        <h3>{{ userData.prenom }} {{ userData.nom }}</h3>
       </div>
     </div>
     <div class="right">
@@ -12,11 +12,14 @@
       <br />
       <hr />
       <br />
-      <div class="event">
-        <h3>Titre de l'évènement</h3>
+      <div class="event" v-for="event in listEvents" :key="event.id">
+        <h3>{{ event.title }}</h3>
         <p>10/12/2021</p>
-        <p>54 Rue dedede Paris , France</p>
-        <button class="close">X</button>
+        <p>{{ event.localisation }}</p>
+        <a class="qrCode" href="http://localhost:5000/participation/QrCode/0"
+          >QrCode</a
+        >
+        <button class="close" v-on:click="unsubscribing(event.id)">X</button>
       </div>
     </div>
   </div>
@@ -27,25 +30,47 @@ module.exports = {
   data() {
     return {
       listEvents: [],
-      userData:{}
+
+      userData: {},
     };
   },
   methods: {
     getUserName: async function () {
-      const response= await axios.get("http://localhost:5000/login/who");
-      this.userData=response.data;      
-      
+      const response = await axios.get("http://localhost:5000/login/who");
+      this.userData = response.data;
+    },
+    getSubscribedEvents: async function () {
+      const response = await axios.get(
+        "http://localhost:5000/participation/user"
+      );
+      this.listEvents = response.data;
+    },
+    unsubscribing: async function (id) {
+      const response = await axios.delete(
+        `http://localhost:5000/participation/event/${id}`
+      );
+      this.getSubscribedEvents();
+
+      this.$forceUpdate();
+    },
+    getQrCode: async function (id) {
+      const response = await axios.get(
+        `http://localhost:5000/participation/QrCode/${id}`
+      );
     },
   },
   computed: {
     nbrEvent: function () {
       return this.listEvents.length;
     },
-
   },
-  created:function(){
+  created: function () {
+    if (localStorage.getItem("login") != "yes") {
+      router.push({ path: "/login", params: {} });
+    }
     this.getUserName();
-  }
+    this.getSubscribedEvents();
+  },
 };
 </script>
 
@@ -78,6 +103,9 @@ button {
   color: red;
   font-weight: bold;
   cursor: pointer;
+}
+.qrCode {
+  margin: 10px;
 }
 @media (min-width: 700px) {
   #myspace {

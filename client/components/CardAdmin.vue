@@ -4,7 +4,7 @@
 
     <div class="card">
       <div class="card-left">
-        <img :src="url" />
+        <img :src="url" />      
       </div>
       <div class="card-right">
         <h1>{{ title }}</h1>
@@ -12,7 +12,7 @@
         <div class="infos">
           <p>
             <img src="../img/calendar-date.png" alt="" />
-            {{ date }}
+            {{ renderDate }}
           </p>
           <p>
             <img src="../img/location.png" alt="" />
@@ -28,7 +28,7 @@
           </p>
         </div>
         <br>
-        <button class="delete" v-on:click="suppr(id)"> Supprimer </button>
+        <button class="delete" v-on:click="deleteEvent(id)"> Supprimer </button>
       </div>
     </div>
 
@@ -44,10 +44,17 @@ module.exports = {
     };
   },
   methods: {
-      suppr(id)
-      {
-        console.log(id)
-      }
+      deleteEvent:async function(id){
+      const response = await axios.delete(`http://localhost:5000/events/${this.id}`);
+
+      this.getEvents();
+    }
+  },
+  computed: {
+    renderDate: function() {
+      const theDate = this.date.split("T")
+      return theDate[0]
+    }
   }
 };
 </script>
@@ -75,7 +82,7 @@ module.exports = {
   width: 100%;
   margin: auto;
   height: 100%;
-  max-height: 400px;
+  max-height: 300px;
 }
 .card-right {
   position: relative;

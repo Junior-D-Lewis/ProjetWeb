@@ -28,6 +28,8 @@
       </div>
 
       <input type="submit" class="form__button" value="Login" />
+
+      <small id="errorlogin"></small>
     </form>
   </div>
 </template>
@@ -71,15 +73,19 @@ module.exports = {
     async handleForm() {
       if (this.handleEmail() === true) {
         let data = { email: this.email, password: this.password };
-        console.log(axios);
+        /* console.log(axios); */
 
         const response = await axios.post("http://localhost:5000/login", data);
         console.log(response);
 
         if (response.status == 200)
+        {
+          localStorage.setItem('login', 'yes');
+          if(response.data.isAdmin){
+            localStorage.setItem('isAdmin', 'yes')
+          }
+            
           router.push({ path: "/home", params: data });
-        else {
-          /* window.alert("Authentication a echouee"); */
         }
       } else {
         return;
@@ -112,13 +118,25 @@ module.exports = {
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.883);
 }
-.form {
-  width: 40%;
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
-  background-color: #f8f8f8;
+
+@media (min-width: 699px) {
+  .form {
+    width: 40%;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+    background-color: #f8f8f8;
+  }
 }
+@media (max-width: 698px) {
+  .form {
+    width: 95%;
+    padding: 4rem 1rem;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+  }
+}
+
 .form__title {
   font-weight: 400;
   margin-bottom: 3rem;

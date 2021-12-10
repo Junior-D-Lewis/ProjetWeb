@@ -17,11 +17,14 @@
 </template>
 
 <script>
-
 module.exports = {
-
   data() {
     return {};
+  },
+  created: function () {
+    if (localStorage.getItem("isAdmin") != "yes") {
+      router.push({ path: "/login", params: {} });
+    }
   },
 };
 </script>

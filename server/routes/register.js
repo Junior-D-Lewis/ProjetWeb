@@ -6,8 +6,6 @@ function registerRouter(pgClient) {
 
     router.post("/", async (req, res) => {
         /* Secu */
-        console.log(bcrypt.hash(""))
-        console.log(req.body);
         const body = req.body;
         const result = await pgClient.query({
             text: 'SELECT nom FROM users WHERE mail=$1',
