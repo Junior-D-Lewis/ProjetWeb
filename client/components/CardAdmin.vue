@@ -1,7 +1,6 @@
 <template>
   <div :class="id">
 
-
     <div class="card">
       <div class="card-left">
         <img :src="url" />      
